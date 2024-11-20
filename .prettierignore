@@ -1,5 +1,8 @@
-# Add files here to ignore them from prettier formatting
-/dist
-/coverage
-/.nx/cache
-/.nx/workspace-data
+**/dist
+**/coverage
+**/.nx/cache
+**/.nx/workspace-data
+**/.yarn
+**/*.md
+**/*.lock
+yarn-1.22.22.cjs
