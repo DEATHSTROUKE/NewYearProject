@@ -1,8 +1,10 @@
 import cn from 'classnames'
 import { FC } from 'react'
-import CheckMark from '../../assets/svgs/CheckMarkIcon'
-import LeftArrow from '../../assets/svgs/LeftArrowIcon'
-import { ClickEvent } from '../../types/event'
+
+import CheckMark from '@/assets/svgs/CheckMarkIcon'
+import LeftArrow from '@/assets/svgs/LeftArrowIcon'
+
+import { ClickEvent } from '@/types/event'
 
 type KeyboardLetterProps = {
   letter: string

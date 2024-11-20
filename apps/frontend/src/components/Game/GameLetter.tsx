@@ -1,6 +1,7 @@
-import { FC } from 'react'
 import cn from 'classnames'
-import { Letter } from '../../types/game'
+import { FC } from 'react'
+
+import { Letter } from '@/types/game'
 
 type GameLetterProps = Partial<Letter>
 

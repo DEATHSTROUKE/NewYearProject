@@ -1,5 +1,6 @@
 import { FC } from 'react'
-import { Message } from '../Message.tsx/Message'
+
+import { Message } from '../Message/Message'
 
 type MeaningProps = {
   text: string

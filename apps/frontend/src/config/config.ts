@@ -1,5 +1,5 @@
-export const API_URL: string = import.meta.env.VITE_API_URL || '';
+export const API_URL: string = import.meta.env.VITE_API_URL || ''
 
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
-export const TOKEN = ''; //window.Telegram.WebApp.initData;
+export const TOKEN = '' //window.Telegram.WebApp.initData;

@@ -1,7 +1,7 @@
-import RuleIcon1 from '../../assets/svgs/RuleIcon1'
-import RuleIcon2 from '../../assets/svgs/RuleIcon2'
-import RuleIcon3 from '../../assets/svgs/RuleIcon3'
-import RuleIcon4 from '../../assets/svgs/RuleIcon4'
+import RuleIcon1 from '@/assets/svgs/RuleIcon1'
+import RuleIcon2 from '@/assets/svgs/RuleIcon2'
+import RuleIcon3 from '@/assets/svgs/RuleIcon3'
+import RuleIcon4 from '@/assets/svgs/RuleIcon4'
 
 export const Rules = () => {
   return (

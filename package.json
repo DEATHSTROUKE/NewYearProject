@@ -7,7 +7,7 @@
     "dev:front": "nx serve frontend --host",
     "dev:back": "nx serve backend",
     "build": "nx run-many -t build",
-    "lint:prettier": "prettier . -c"
+    "lint:prettier": "prettier . -c -w"
   },
   "private": true,
   "dependencies": {

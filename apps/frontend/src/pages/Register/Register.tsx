@@ -1,13 +1,18 @@
-import giftTop from '../../assets/images/gift_top.png'
-import giftBottom from '../../assets/images/gift_bottom.png'
-import { useEffect, useState } from 'react'
-import Spinner from '../../assets/svgs/Spinner'
-import { fieldsData } from './registerData'
-import { Input } from '../../components/Input/Input'
-import { RegisterFields, FieldsNames } from '../../types/register'
-import { useRegister } from '../../api/register'
 import { AxiosError } from 'axios'
-import { ApiError } from '../../types/error'
+import { useEffect, useState } from 'react'
+
+import { useRegister } from '@/api/register'
+
+import { Input } from '@/components/Input/Input'
+
+import giftBottom from '@/assets/images/gift_bottom.png'
+import giftTop from '@/assets/images/gift_top.png'
+import Spinner from '@/assets/svgs/Spinner'
+
+import { ApiError } from '@/types/error'
+import { FieldsNames, RegisterFields } from '@/types/register'
+
+import { fieldsData } from './registerData'
 
 const initialFields: RegisterFields = {
   name: '',
@@ -35,7 +40,7 @@ export const Register = () => {
     setError(null)
 
     let isCorrect = true
-    Object.values(fields).forEach((value) => {
+    Object.values(fields).forEach(value => {
       if (value === '') {
         setError('Не все поля заполнены')
         isCorrect = false
@@ -75,7 +80,7 @@ export const Register = () => {
   }, [isError, mutateError])
 
   const onChangeInput = (field: FieldsNames, value: string) => {
-    setFields((prev) => ({ ...prev, [field]: value }))
+    setFields(prev => ({ ...prev, [field]: value }))
   }
 
   return (
@@ -91,7 +96,7 @@ export const Register = () => {
                 <h1>Укажите ваши данные,</h1>
                 чтобы Дед Мороз знал, куда везти подарки
               </div>
-              {fieldsData.map((item) => (
+              {fieldsData.map(item => (
                 <Input
                   field={item.field}
                   value={fields[item.field]}
@@ -108,7 +113,7 @@ export const Register = () => {
                     type="checkbox"
                     id="checkbox2"
                     className="checkbox"
-                    onChange={() => setIsAgreePolicy((prev) => !prev)}
+                    onChange={() => setIsAgreePolicy(prev => !prev)}
                     checked={isAgreePolicy}
                   />
                   <label htmlFor="checkbox2">

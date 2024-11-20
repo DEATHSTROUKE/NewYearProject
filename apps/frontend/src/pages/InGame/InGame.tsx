@@ -1,10 +1,12 @@
 import { useLocation } from 'react-router-dom'
-import { Tree } from '../../components/Tree/Tree'
-import { Message } from '../../components/Message.tsx/Message'
-import { Game } from '../../components/Game/Game'
-import { InGameState } from '../../types/gameState'
-import { Rules } from '../../components/Rules/Rules'
-import HowToPlay from '../../components/HowToPlay/HowToPlay'
+
+import { Game } from '@/components/Game/Game'
+import { HowToPlay } from '@/components/HowToPlay/HowToPlay'
+import { Message } from '@/components/Message/Message'
+import { Rules } from '@/components/Rules/Rules'
+import { Tree } from '@/components/Tree/Tree'
+
+import { InGameState } from '@/types/gameState'
 
 export const InGame = () => {
   const location = useLocation() as { state: InGameState }

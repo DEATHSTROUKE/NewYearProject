@@ -1,10 +1,13 @@
-import giftTop from '../../assets/images/gift_top.png'
-import giftBottom from '../../assets/images/gift_bottom.png'
-import { FC, useEffect, useState } from 'react'
-import { useSendFeedback } from '../../api/sendFeedback'
-import Spinner from '../../assets/svgs/Spinner'
 import { AxiosError } from 'axios'
-import { ApiError } from '../../types/error'
+import { FC, useEffect, useState } from 'react'
+
+import { useSendFeedback } from '@/api/sendFeedback'
+
+import giftBottom from '@/assets/images/gift_bottom.png'
+import giftTop from '@/assets/images/gift_top.png'
+import Spinner from '@/assets/svgs/Spinner'
+
+import { ApiError } from '@/types/error'
 
 type FeedbackProps = {
   text: string
@@ -55,7 +58,7 @@ export const Feedback: FC<FeedbackProps> = ({ text, afterFeedbackText }) => {
               <label>
                 <textarea
                   placeholder="Для продолжения игры нужно оставить отзыв..."
-                  onChange={(e) => setFeedback(e.target.value)}
+                  onChange={e => setFeedback(e.target.value)}
                   value={feedback}
                 />
               </label>

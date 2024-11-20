@@ -1,6 +1,7 @@
 import { useQuery } from '@tanstack/react-query'
-import { baseApiRequest } from './baseApiRequest'
+
 import { GetState } from '../types/gameState'
+import { baseApiRequest } from './baseApiRequest'
 
 export const useGetState = () => {
   return useQuery({

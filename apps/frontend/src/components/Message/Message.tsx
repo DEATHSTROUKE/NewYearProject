@@ -1,5 +1,6 @@
 import { FC } from 'react'
-import MessageAngle from '../../assets/svgs/MessageAngleIcon'
+
+import MessageAngle from '@/assets/svgs/MessageAngleIcon'
 
 type MessageProps = {
   text: string

@@ -1,8 +1,9 @@
-import { FC, useCallback, useEffect, useRef, useState } from 'react'
-import { TreeEntity } from './TreeEntity'
 import * as PIXI from 'pixi.js'
-import { useLoadAsset } from './useLoadAsset'
+import { FC, useCallback, useEffect, useRef, useState } from 'react'
+
+import { TreeEntity } from './TreeEntity'
 import { TreeMessage } from './TreeMessage'
+import { useLoadAsset } from './useLoadAsset'
 
 type TreeProps = {
   activeGifts: number
@@ -81,7 +82,7 @@ export const TreeCanvas: FC<TreeProps> = ({
     <div
       className="canvas-wrapper"
       ref={containerRef}
-      onClick={(e) => {
+      onClick={e => {
         e.stopPropagation()
       }}
     >

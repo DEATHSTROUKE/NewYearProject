@@ -1,4 +1,4 @@
-import Spinner from '../../assets/svgs/Spinner'
+import Spinner from '@/assets/svgs/Spinner'
 
 export const IsLoading = () => {
   return (

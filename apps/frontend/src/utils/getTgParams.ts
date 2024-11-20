@@ -1,5 +1,5 @@
-import { TOKEN } from '../config/config';
+import { TOKEN } from '../config/config'
 
 export const getTgParams = (): string => {
-  return TOKEN || '';
-};
+  return TOKEN || ''
+}

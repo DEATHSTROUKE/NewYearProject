@@ -1,5 +1,5 @@
-import Logo from '../../assets/svgs/LogoIcon'
-import Telegram from '../../assets/svgs/TelegramIcon'
+import Logo from '@/assets/svgs/LogoIcon'
+import Telegram from '@/assets/svgs/TelegramIcon'
 
 export const Footer = () => {
   return (
@@ -26,6 +26,7 @@ export const Footer = () => {
               <div className="footer__text text__light">Все права защищены</div>
               <div className="footer__text">
                 <a
+                  rel="noreferrer"
                   href="https://telegra.ph/Politika-v-otnoshenii-obrabotki-personalnyh-dannyh-12-18-6"
                   target="_blank"
                   className="underline"
@@ -37,6 +38,7 @@ export const Footer = () => {
             <div className="footer__column">
               <div className="footer__text">
                 <a
+                  rel="noreferrer"
                   href="https://telegra.ph/Novogodnyaya-viktorina-Naryadi-svoyu-yolochku-12-17"
                   target="_blank"
                 >
@@ -46,14 +48,22 @@ export const Footer = () => {
             </div>
             <div className="footer__column">
               <div className="footer__text">
-                <a href="https://t.me/snegurochkablago" target="_blank">
+                <a
+                  href="https://t.me/snegurochkablago"
+                  rel="noreferrer"
+                  target="_blank"
+                >
                   Снегурочка на связи
                 </a>
               </div>
             </div>
             <div className="footer__column">
               <div className="footer__icon">
-                <a href="https://t.me/+QnoomH1zp9k0OGUy" target="_blank">
+                <a
+                  href="https://t.me/+QnoomH1zp9k0OGUy"
+                  rel="noreferrer"
+                  target="_blank"
+                >
                   <Telegram />
                 </a>
               </div>
@@ -67,7 +77,11 @@ export const Footer = () => {
 
             <div className="footer__row">
               <div className="footer__icon">
-                <a href="https://t.me/+QnoomH1zp9k0OGUy" target="_blank">
+                <a
+                  href="https://t.me/+QnoomH1zp9k0OGUy"
+                  rel="noreferrer"
+                  target="_blank"
+                >
                   <Telegram />
                 </a>
               </div>
@@ -83,6 +97,7 @@ export const Footer = () => {
                 </div>
                 <div className="footer__text">
                   <a
+                    rel="noreferrer"
                     href="https://telegra.ph/Politika-v-otnoshenii-obrabotki-personalnyh-dannyh-12-18-6"
                     target="_blank"
                     className="underline"
@@ -99,6 +114,7 @@ export const Footer = () => {
                   <div className="footer__header">Меню</div>
                   <div className="footer__text">
                     <a
+                      rel="noreferrer"
                       href="https://telegra.ph/Novogodnyaya-viktorina-Naryadi-svoyu-yolochku-12-17"
                       target="_blank"
                     >
@@ -110,7 +126,11 @@ export const Footer = () => {
                 <div className="footer__column">
                   <div className="footer__header">Техподдержка</div>
                   <div className="footer__text">
-                    <a href="https://t.me/snegurochkablago" target="_blank">
+                    <a
+                      href="https://t.me/snegurochkablago"
+                      rel="noreferrer"
+                      target="_blank"
+                    >
                       Снегурочка на связи
                     </a>
                   </div>

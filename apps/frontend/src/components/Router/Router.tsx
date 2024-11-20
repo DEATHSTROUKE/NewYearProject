@@ -1,13 +1,15 @@
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
-import { BeforeGame } from '../../pages/BeforeGame/BeforeGame'
-import { Register } from '../../pages/Register/Register'
+import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom'
+
+import { AfterLottery } from '@/pages/AfterLottery/AfterLottery'
+import { BeforeGame } from '@/pages/BeforeGame/BeforeGame'
+import { InGame } from '@/pages/InGame/InGame'
+import { Register } from '@/pages/Register/Register'
+import TestPage from '@/pages/TestPage'
+import { WaitingFeedback } from '@/pages/WaitingFeedback/WaitingFeedback'
+import { WaitingLottery } from '@/pages/WaitingLottery/WaitingLottery'
+import { WaitingNextGame } from '@/pages/WaitingNextGame/WaitingNextGame'
+
 import { App } from '../App/App'
-import { InGame } from '../../pages/InGame/InGame'
-import { WaitingFeedback } from '../../pages/WaitingFeedback/WaitingFeedback'
-import { WaitingNextGame } from '../../pages/WaitingNextGame/WaitingNextGame.1'
-import { WaitingLottery } from '../../pages/WaitingLottery/WaitingLottery'
-import { AfterLottery } from '../../pages/AfterLottery/AfterLottery'
-import TestPage from '../../pages/TestPage'
 
 export const Router = () => {
   return (
@@ -21,7 +23,7 @@ export const Router = () => {
           <Route element={<WaitingLottery />} path="/waitEndLottery" />
           <Route element={<AfterLottery />} path="/afterLottery" />
           <Route element={<Register />} path="/register" />
-          <Route element={<TestPage />} path="/testPage" /> // TODO: remove
+          <Route element={<TestPage />} path="/testPage" />
         </Route>
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>

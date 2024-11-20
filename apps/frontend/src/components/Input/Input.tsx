@@ -1,5 +1,6 @@
 import { IMaskInput } from 'react-imask'
-import { FieldsNames } from '../../types/register'
+
+import { FieldsNames } from '@/types/register'
 
 const PhoneMask = '+{7} (000) 000-00-00'
 
@@ -38,7 +39,7 @@ export const Input = ({
           <input
             type={type}
             placeholder={placeholder}
-            onChange={(e) => onChangeInput(field, e.target.value)}
+            onChange={e => onChangeInput(field, e.target.value)}
             value={value}
           />
         )}

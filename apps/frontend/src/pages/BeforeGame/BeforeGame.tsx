@@ -1,9 +1,11 @@
-import { Message } from '../../components/Message.tsx/Message'
-import { Rules } from '../../components/Rules/Rules'
-import HowToPlay from '../../components/HowToPlay/HowToPlay'
 import { useLocation } from 'react-router-dom'
-import { BeforeGameState } from '../../types/gameState'
-import { Tree } from '../../components/Tree/Tree'
+
+import { HowToPlay } from '@/components/HowToPlay/HowToPlay'
+import { Message } from '@/components/Message/Message'
+import { Rules } from '@/components/Rules/Rules'
+import { Tree } from '@/components/Tree/Tree'
+
+import { BeforeGameState } from '@/types/gameState'
 
 export const BeforeGame = () => {
   const location = useLocation() as { state: BeforeGameState }
@@ -20,6 +22,7 @@ export const BeforeGame = () => {
 
       <div className="main-page__row">
         <a
+          rel="noreferrer"
           href="https://telegra.ph/Novogodnyaya-viktorina-Naryadi-svoyu-yolochku-12-17"
           target="_blank"
           className="main-page__btn"

@@ -1,13 +1,16 @@
-import { useLocation } from 'react-router-dom'
-import { LotteryTicket } from '../../components/App/LotteryTicket/LotteryTicket'
-import { Message } from '../../components/Message.tsx/Message'
-import { Tree } from '../../components/Tree/Tree'
-import { WaitEndLotteryState } from '../../types/gameState'
-import { useMainStore } from '../../store/mainStore'
 import { useLayoutEffect } from 'react'
+import { useLocation } from 'react-router-dom'
+
+import { LotteryTicket } from '@/components/LotteryTicket/LotteryTicket'
+import { Message } from '@/components/Message/Message'
+import { Tree } from '@/components/Tree/Tree'
+
+import { useMainStore } from '@/store/mainStore'
+
+import { WaitEndLotteryState } from '@/types/gameState'
 
 export const WaitingLottery = () => {
-  const setTimer = useMainStore((state) => state.setTimer)
+  const setTimer = useMainStore(state => state.setTimer)
   const location = useLocation() as { state: WaitEndLotteryState }
   const {
     text,

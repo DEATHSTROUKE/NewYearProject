@@ -1,9 +1,11 @@
-import { KeyboardLetter } from './KeyboardLetter'
 import cn from 'classnames'
-import { keyboardData } from './keyboardData'
 import { FC, useEffect } from 'react'
-import { ClickEvent } from '../../types/event'
-import { Letter } from '../../types/game'
+
+import { ClickEvent } from '@/types/event'
+import { Letter } from '@/types/game'
+
+import { KeyboardLetter } from './KeyboardLetter'
+import { keyboardData } from './keyboardData'
 import { setKeyboardState } from './keyboardStateHandler'
 
 type KeyboardProps = {
@@ -54,15 +56,15 @@ export const Keyboard: FC<KeyboardProps> = ({
 
   return (
     <div className={cn('keyboard', { open: isOpen })}>
-      {keyboardDataWithState.map((row) => (
+      {keyboardDataWithState.map(row => (
         <div className="keyboard__row" key={row[0].id}>
-          {row.map((item) =>
+          {row.map(item =>
             item.id === 52 ? (
               <KeyboardLetter
                 key={item.id}
                 id={item.id}
                 letter={item.letter}
-                onClickLetter={(e) => onClickEnter(e)}
+                onClickLetter={e => onClickEnter(e)}
                 canAttempt={canAttempt}
               />
             ) : item.id === 51 ? (
@@ -70,7 +72,7 @@ export const Keyboard: FC<KeyboardProps> = ({
                 key={item.id}
                 id={item.id}
                 letter={item.letter}
-                onClickLetter={(e) => onClickDelete(e)}
+                onClickLetter={e => onClickDelete(e)}
               />
             ) : (
               <KeyboardLetter
@@ -78,7 +80,7 @@ export const Keyboard: FC<KeyboardProps> = ({
                 id={item.id}
                 state={item.state}
                 letter={item.letter}
-                onClickLetter={(e) => onClickLetter(e, item.letter)}
+                onClickLetter={e => onClickLetter(e, item.letter)}
               />
             ),
           )}

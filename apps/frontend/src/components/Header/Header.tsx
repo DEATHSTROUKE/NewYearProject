@@ -1,23 +1,25 @@
-import { useEffect, useState } from 'react'
-import Logo from '../../assets/svgs/LogoIcon'
-import NoSound from '../../assets/svgs/NoSoundIcon'
-import Sound from '../../assets/svgs/SoundIcon'
-import { Timer } from '../Timer/Timer'
 import cn from 'classnames'
+import { useEffect, useState } from 'react'
+
+import Logo from '@/assets/svgs/LogoIcon'
+import NoSound from '@/assets/svgs/NoSoundIcon'
+import Sound from '@/assets/svgs/SoundIcon'
+
+import { Timer } from '../Timer/Timer'
 
 export const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isSound, setIsSound] = useState(true)
 
   const toggleIsSound = () => {
-    setIsSound((prev) => {
+    setIsSound(prev => {
       localStorage.setItem('isSound', (!prev).toString())
       return !prev
     })
   }
 
   const onMenuOpen = () => {
-    setIsMenuOpen((prev) => {
+    setIsMenuOpen(prev => {
       document.body.style.overflowY = !prev ? 'hidden' : 'scroll'
       return !prev
     })

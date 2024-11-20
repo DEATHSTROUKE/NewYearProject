@@ -1,4 +1,4 @@
-import { TKeyboardLetter, Letter, LetterState } from '../../types/game'
+import { Letter, LetterState, TKeyboardLetter } from '@/types/game'
 
 export const setKeyboardState = (
   keyboardData: TKeyboardLetter[][],
@@ -10,7 +10,7 @@ export const setKeyboardState = (
         let state: LetterState = ''
         if (
           letters.find(
-            (item) =>
+            item =>
               item.letter === keyboardData[i][j].letter &&
               item.state === 'grey',
           )
@@ -19,7 +19,7 @@ export const setKeyboardState = (
         }
         if (
           letters.find(
-            (item) =>
+            item =>
               item.letter === keyboardData[i][j].letter &&
               item.state === 'yellow',
           )
@@ -28,7 +28,7 @@ export const setKeyboardState = (
         }
         if (
           letters.find(
-            (item) =>
+            item =>
               item.letter === keyboardData[i][j].letter &&
               item.state === 'green',
           )

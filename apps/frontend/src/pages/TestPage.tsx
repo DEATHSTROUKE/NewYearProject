@@ -1,21 +1,24 @@
-import React, { useLayoutEffect } from 'react';
-import { Message } from '../components/Message.tsx/Message';
-import HowToPlay from '../components/HowToPlay/HowToPlay';
-import { Rules } from '../components/Rules/Rules';
-import { Meaning } from '../components/Meaning/Meaning';
-import { LotteryTicket } from '../components/App/LotteryTicket/LotteryTicket';
-import { Feedback } from '../components/Feedback/Feedback';
-import { Game } from '../components/Game/Game';
-import { Letter } from '../types/game';
-import { Tree } from '../components/Tree/Tree';
-import { useMainStore } from '../store/mainStore';
+import React, { useLayoutEffect } from 'react'
+
+import { Feedback } from '@/components/Feedback/Feedback'
+import { Game } from '@/components/Game/Game'
+import { HowToPlay } from '@/components/HowToPlay/HowToPlay'
+import { LotteryTicket } from '@/components/LotteryTicket/LotteryTicket'
+import { Meaning } from '@/components/Meaning/Meaning'
+import { Message } from '@/components/Message/Message'
+import { Rules } from '@/components/Rules/Rules'
+import { Tree } from '@/components/Tree/Tree'
+
+import { useMainStore } from '@/store/mainStore'
+
+import { Letter } from '@/types/game'
 
 const TestPage = () => {
-  const setTimer = useMainStore((state) => state.setTimer);
+  const setTimer = useMainStore(state => state.setTimer)
 
   useLayoutEffect(() => {
-    setTimer('2023-12-21T22:52:27.777Z');
-  }, [setTimer]);
+    setTimer('2023-12-21T22:52:27.777Z')
+  }, [setTimer])
 
   const letters: Letter[] = [
     { letter: 'а', state: 'yellow' },
@@ -33,7 +36,7 @@ const TestPage = () => {
     { letter: 'а', state: 'green' },
     { letter: 'в', state: 'green' },
     { letter: 'а', state: 'green' },
-  ];
+  ]
 
   return (
     <div className="main-wrapper">
@@ -94,7 +97,7 @@ const TestPage = () => {
       {/* Елка на канвасе */}
       <div className="main-page__row"></div>
     </div>
-  );
-};
+  )
+}
 
-export default TestPage;
+export default TestPage

@@ -99,5 +99,3 @@ export const HowToPlay = () => {
     </div>
   )
 }
-
-export default HowToPlay

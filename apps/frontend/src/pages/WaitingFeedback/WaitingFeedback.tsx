@@ -1,9 +1,11 @@
 import { useLocation } from 'react-router-dom'
-import { Game } from '../../components/Game/Game'
-import { Message } from '../../components/Message.tsx/Message'
-import { Tree } from '../../components/Tree/Tree'
-import { WaitFeedbackState } from '../../types/gameState'
-import { Feedback } from '../../components/Feedback/Feedback'
+
+import { Feedback } from '@/components/Feedback/Feedback'
+import { Game } from '@/components/Game/Game'
+import { Message } from '@/components/Message/Message'
+import { Tree } from '@/components/Tree/Tree'
+
+import { WaitFeedbackState } from '@/types/gameState'
 
 export const WaitingFeedback = () => {
   const location = useLocation() as { state: WaitFeedbackState }

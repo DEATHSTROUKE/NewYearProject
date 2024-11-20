@@ -5,7 +5,7 @@ export type MainStore = {
   setTimer: (timer: null | string) => void
 }
 
-export const useMainStore = create<MainStore>()((set) => ({
+export const useMainStore = create<MainStore>()(set => ({
   timer: null,
   setTimer: (timer: string | null) => set({ timer }),
 }))

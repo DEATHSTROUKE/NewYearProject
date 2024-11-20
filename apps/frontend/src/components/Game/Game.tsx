@@ -1,14 +1,19 @@
-import React, { FC, useCallback, useEffect, useState } from 'react'
-import cn from 'classnames'
-import { Letter } from '../../types/game'
-import { useNewAttempt } from '../../api/newAttempt'
-import { GameLetter } from './GameLetter'
-import { Keyboard } from '../Keyboard/Keyboard'
-import { createPortal } from 'react-dom'
 import { AxiosError } from 'axios'
-import { ApiError, ApiErrorString } from '../../types/error'
-import Spinner from '../../assets/svgs/Spinner'
-import { russianLetters } from '../../config/gameData'
+import cn from 'classnames'
+import React, { FC, useCallback, useEffect, useState } from 'react'
+import { createPortal } from 'react-dom'
+
+import { useNewAttempt } from '@/api/newAttempt'
+
+import { russianLetters } from '@/config/gameData'
+
+import Spinner from '@/assets/svgs/Spinner'
+
+import { ApiError, ApiErrorString } from '@/types/error'
+import { Letter } from '@/types/game'
+
+import { Keyboard } from '../Keyboard/Keyboard'
+import { GameLetter } from './GameLetter'
 
 type GameProps = {
   letters: Letter[]
@@ -49,7 +54,7 @@ export const Game: FC<GameProps> = ({
   } = useNewAttempt({ clearField })
 
   const onNewAttempt = useCallback(() => {
-    if (inputWord.some((item) => item === '')) return
+    if (inputWord.some(item => item === '')) return
 
     setError(null)
     const transformedWord = inputWord.join('').toLocaleLowerCase()
@@ -77,25 +82,25 @@ export const Game: FC<GameProps> = ({
 
   const onChangeInput = (letter?: string) => {
     if (letter) {
-      setInputWord((prev) => {
+      setInputWord(prev => {
         for (let i = 0; i < prev.length; i++) {
           if (prev[i] === '') {
             prev[i] = letter
             break
           }
         }
-        setCanAttempt(prev.every((item) => item !== ''))
+        setCanAttempt(prev.every(item => item !== ''))
         return [...prev]
       })
     } else {
-      setInputWord((prev) => {
+      setInputWord(prev => {
         for (let i = prev.length - 1; i >= 0; i--) {
           if (prev[i] !== '') {
             prev[i] = ''
             break
           }
         }
-        setCanAttempt(prev.every((item) => item !== ''))
+        setCanAttempt(prev.every(item => item !== ''))
         return [...prev]
       })
     }

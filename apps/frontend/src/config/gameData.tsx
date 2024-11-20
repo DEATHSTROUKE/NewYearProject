@@ -66,7 +66,7 @@ export const initialGameData = {
   isEnd: true,
   postLink: 't.me/id_post',
   description: 'Описание слова после того как закончатся попытки',
-};
+}
 
 export const russianLetters = [
   'а',
@@ -102,4 +102,4 @@ export const russianLetters = [
   'э',
   'ю',
   'я',
-];
+]

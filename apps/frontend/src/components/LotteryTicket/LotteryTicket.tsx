@@ -1,5 +1,6 @@
 import { FC } from 'react'
-import Sphere from '../../../assets/images/Sphere.png'
+
+import Sphere from '@/assets/images/Sphere.png'
 
 type TicketProps = {
   ticketNumber: string

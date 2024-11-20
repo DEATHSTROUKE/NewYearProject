@@ -1,8 +1,11 @@
-import { Outlet, useNavigate } from 'react-router-dom'
-import { useGetState } from '../../api/getState'
-import { useEffect } from 'react'
 import { AxiosError } from 'axios'
-import { ApiError, ApiErrorString } from '../../types/error'
+import { useEffect } from 'react'
+import { Outlet, useNavigate } from 'react-router-dom'
+
+import { useGetState } from '@/api/getState'
+
+import { ApiError, ApiErrorString } from '@/types/error'
+
 import { IsLoading } from '../IsLoading/IsLoading'
 
 export const Main = () => {
