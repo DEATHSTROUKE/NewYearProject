@@ -1,0 +1,25 @@
+meta {
+  name: Admin Texts
+  type: http
+  seq: 6
+}
+
+put {
+  url: https://localhost:3000/api/admin/text
+  body: json
+  auth: none
+}
+
+headers {
+  accept: */*
+  Content-Type: application/json
+}
+
+body:json {
+  {
+    "title": "string",
+    "text": "string",
+    "startDate": "2024-12-02T20:49:28.020Z",
+    "endDate": "2024-12-02T20:49:28.020Z"
+  }
+}

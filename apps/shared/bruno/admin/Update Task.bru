@@ -1,0 +1,26 @@
+meta {
+  name: Update Task
+  type: http
+  seq: 4
+}
+
+put {
+  url: https://localhost:3000/api/admin/task/1
+  body: json
+  auth: none
+}
+
+headers {
+  accept: */*
+  Content-Type: application/json
+}
+
+body:json {
+  {
+    "question": "string",
+    "answer": "string",
+    "meaning": "string",
+    "wordIndex": 0,
+    "startDate": "2024-12-02T20:47:19.695Z"
+  }
+}

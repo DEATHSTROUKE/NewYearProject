@@ -1,0 +1,20 @@
+meta {
+  name: Send feedback
+  type: http
+  seq: 4
+}
+
+post {
+  url: http://localhost:3000/api/client/sendFeedback
+  body: json
+  auth: none
+}
+
+headers {
+  X-Telegram-Auth: YOUR_TELEGRAM_AUTH_TOKEN
+  Content-Type: application/json
+}
+
+body:json {
+  { "feedback": "Отличная игра!" }
+}

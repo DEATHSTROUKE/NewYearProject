@@ -1,0 +1,20 @@
+meta {
+  name: Register
+  type: http
+  seq: 3
+}
+
+post {
+  url: http://localhost:3000/api/client/register
+  body: json
+  auth: none
+}
+
+headers {
+  X-Telegram-Auth: YOUR_TELEGRAM_AUTH_TOKEN
+  Content-Type: application/json
+}
+
+body:json {
+  { "name": "Иван", "surname": "Иванов", "middleName": "Иванович", "email": "ivan@example.com", "phone": "+79001234567", "place": "Москва", "division": "ИТ отдел" }
+}
