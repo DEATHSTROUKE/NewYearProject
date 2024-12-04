@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query'
 
-import { GetState } from '../types/gameState'
+import { GetState } from '../../../shared/src/api/gameState'
 import { baseApiRequest } from './baseApiRequest'
 
 export const useGetState = () => {

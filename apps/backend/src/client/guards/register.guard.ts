@@ -1,5 +1,4 @@
 import { DATABASE_CONNECTION, DB_TYPE } from '@/database/db-connection'
-import * as schema from '@/drizzle/schema/schema'
 import {
   CanActivate,
   ExecutionContext,
@@ -7,28 +6,19 @@ import {
   Injectable,
   UnauthorizedException,
 } from '@nestjs/common'
-import { eq } from 'drizzle-orm'
 
 @Injectable()
-export class TgAuthGuard implements CanActivate {
+export class TgRegisterGuard implements CanActivate {
   constructor(@Inject(DATABASE_CONNECTION) private readonly db: DB_TYPE) {}
 
   async canActivate(context: ExecutionContext): Promise<boolean> {
     const request = context.switchToHttp().getRequest()
 
     const token = request.headers['x-telegram-auth']
-    const tgUser = new URLSearchParams(token).get('user') || ''
-    const telegramId = parseInt(JSON.parse(tgUser).id || '')
+    const user = new URLSearchParams(token).get('user') || ''
+    const telegramId = parseInt(JSON.parse(user).id || '')
 
     if (!telegramId) {
-      throw new UnauthorizedException()
-    }
-
-    const user = await this.db.query.userTable.findFirst({
-      where: eq(schema.userTable.id, telegramId),
-    })
-
-    if (!user) {
       throw new UnauthorizedException()
     }
 

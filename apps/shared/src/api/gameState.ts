@@ -1,4 +1,4 @@
-import { Letter } from '../../../shared/src/api/game'
+import { Letter } from './game'
 
 export type GameState =
   | 'beforeGame'

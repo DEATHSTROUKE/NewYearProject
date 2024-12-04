@@ -5,16 +5,24 @@ meta {
 }
 
 post {
-  url: http://localhost:3000/api/client/register
+  url: {{url}}/client/register
   body: json
   auth: none
 }
 
 headers {
-  X-Telegram-Auth: YOUR_TELEGRAM_AUTH_TOKEN
+  X-Telegram-Auth: {{tg}}
   Content-Type: application/json
 }
 
 body:json {
-  { "name": "Иван", "surname": "Иванов", "middleName": "Иванович", "email": "ivan@example.com", "phone": "+79001234567", "place": "Москва", "division": "ИТ отдел" }
+  {
+    "name": "Иван",
+    "surname": "Иванов",
+    "middleName": "Иванович",
+    "email": "ivan@example.com",
+    "phone": "+79001234567",
+    "place": "Москва",
+    "division": "ИТ отдел"
+  }
 }

@@ -1,1 +1,5 @@
-export * from './client'
+export * from './error'
+export * from './game'
+export * from './gameState'
+export * from './register'
+export * from './requests'

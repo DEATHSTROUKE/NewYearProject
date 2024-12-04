@@ -29,6 +29,11 @@
     "src/**/*.jsx",
     "src/**/*.ts",
     "src/**/*.tsx",
-    "src/components/Message"
+    "src/components/Message",
+    "../shared/src/api/register.ts",
+    "../shared/src/api/game.ts",
+    "../shared/src/api/event.ts",
+    "../shared/src/api/error.ts",
+    "../shared/src/api/gameState.ts"
   ]
 }

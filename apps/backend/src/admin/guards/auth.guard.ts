@@ -5,8 +5,7 @@ import {
   UnauthorizedException,
 } from '@nestjs/common'
 import { JwtService } from '@nestjs/jwt'
-
-import { JWT_SECRET } from '../admin.module'
+import { Request } from 'express'
 
 @Injectable()
 export class AuthGuard implements CanActivate {
@@ -20,9 +19,7 @@ export class AuthGuard implements CanActivate {
       throw new UnauthorizedException()
     }
     try {
-      const payload = await this.jwtService.verifyAsync(token, {
-        secret: JWT_SECRET,
-      })
+      const payload = await this.jwtService.verifyAsync(token)
       request['user'] = payload
     } catch {
       throw new UnauthorizedException()
@@ -30,9 +27,7 @@ export class AuthGuard implements CanActivate {
     return true
   }
 
-  private extractTokenFromHeader(request: Request): string | undefined {
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore
+  private extractTokenFromHeader(request: Request) {
     const authorization = request.headers['authorization']
     const [type, token] = authorization?.split(' ') ?? []
     return type === 'Bearer' ? token : undefined

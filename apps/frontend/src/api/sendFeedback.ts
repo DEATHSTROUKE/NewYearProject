@@ -1,10 +1,7 @@
+import { FeedbackData } from '@shared'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 
 import { baseApiRequest } from './baseApiRequest'
-
-type FeedbackData = {
-  feedback: string
-}
 
 type SendFeedbackParams = {
   setIsFeedbackJustSent: (value: boolean) => void
@@ -30,6 +27,5 @@ export const useSendFeedback = ({
         client.invalidateQueries({ queryKey: ['getState'] })
       }, 5000)
     },
-    onError: () => {},
   })
 }

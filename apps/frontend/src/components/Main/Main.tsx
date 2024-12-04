@@ -1,10 +1,9 @@
+import { ApiError, ApiErrorString } from '@shared'
 import { AxiosError } from 'axios'
 import { useEffect } from 'react'
 import { Outlet, useNavigate } from 'react-router-dom'
 
 import { useGetState } from '@/api/getState'
-
-import { ApiError, ApiErrorString } from '@/types/error'
 
 import { IsLoading } from '../IsLoading/IsLoading'
 

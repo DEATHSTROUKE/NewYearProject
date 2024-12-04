@@ -1,4 +1,4 @@
-import { TKeyboardLetter } from '../../types/game'
+import { TKeyboardLetter } from '../../../../shared/src/api/game'
 
 export const keyboardData: TKeyboardLetter[][] = [
   [

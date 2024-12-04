@@ -1,10 +1,11 @@
+import { DATABASE_CONNECTION, DB_TYPE } from '@/database/db-connection'
+import * as schema from '@/drizzle/schema/schema'
 import { Inject, Injectable } from '@nestjs/common'
 import { JwtService } from '@nestjs/jwt'
 import bcrypt from 'bcrypt'
 import { eq } from 'drizzle-orm'
 
-import { DATABASE_CONNECTION, DB_TYPE } from '../../database/db-connection'
-import { adminTable } from '../../drizzle/schema/schema'
+import { EditTextDto } from '../types/admin.dto'
 
 @Injectable()
 export class AdminService {
@@ -14,7 +15,7 @@ export class AdminService {
   ) {}
   async signIn({ login, password }: { login: string; password: string }) {
     const admin = await this.db.query.adminTable.findFirst({
-      where: eq(adminTable.login, login),
+      where: eq(schema.adminTable.login, login),
     })
 
     if (!admin) {
@@ -31,23 +32,19 @@ export class AdminService {
     return { token }
   }
 
-  create() {
-    return 'This action adds a new admin'
+  async getTexts() {
+    return await this.db.query.adminTextsTable.findMany()
   }
 
-  async findAll() {
-    return `This action returns all admin`
-  }
-
-  async findOne(id: number) {
-    return `This action returns a #${id} admin`
-  }
-
-  update(id: number) {
-    return `This action updates a #${id} admin`
-  }
-
-  remove(id: number) {
-    return `This action removes a #${id} admin`
+  async editText({ title, text, startDate, endDate }: EditTextDto) {
+    console.info({ text })
+    await this.db
+      .update(schema.adminTextsTable)
+      .set({
+        text,
+        startDate: startDate ? new Date(startDate) : null,
+        endDate: endDate ? new Date(endDate) : null,
+      })
+      .where(eq(schema.adminTextsTable.title, title))
   }
 }

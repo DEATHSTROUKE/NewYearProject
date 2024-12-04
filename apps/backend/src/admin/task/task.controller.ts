@@ -10,6 +10,7 @@ import {
 } from '@nestjs/common'
 
 import { AuthGuard } from '../guards/auth.guard'
+import { CreateTaskDto, UpdateTaskDto } from '../types/task.dto'
 import { TaskService } from './task.service'
 
 @UseGuards(AuthGuard)
@@ -17,28 +18,25 @@ import { TaskService } from './task.service'
 export class TaskController {
   constructor(private readonly taskService: TaskService) {}
 
-  // @Post()
-  // async create(@Body() task: Task) {
-  //   return await this.taskService.create(task)
-  // }
+  @Get()
+  async findAll() {
+    return await this.taskService.findAll()
+  }
 
-  // @Get()
-  // async findAll() {
-  //   return await this.taskService.findAll()
-  // }
+  @Post()
+  async create(@Body() task: CreateTaskDto) {
+    return await this.taskService.create(task)
+  }
 
-  // @Get(':id')
-  // async findOne(@Param('id') id: string) {
-  //   return await this.taskService.findOne(id)
-  // }
+  @Put(':id')
+  async update(@Param('id') id: string, @Body() task: UpdateTaskDto) {
+    await this.taskService.update(id, task)
+    return { status: 'ok' }
+  }
 
-  // @Put(':id')
-  // async update(@Param('id') id: string, @Body() task: Task) {
-  //   return await this.taskService.update(id, task)
-  // }
-
-  // @Delete(':id')
-  // async remove(@Param('id') id: string) {
-  //   return await this.taskService.remove(id)
-  // }
+  @Delete(':id')
+  async remove(@Param('id') id: string) {
+    await this.taskService.remove(id)
+    return { status: 'ok' }
+  }
 }

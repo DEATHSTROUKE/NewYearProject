@@ -12,11 +12,10 @@ import { TaskService } from './task/task.service'
 import { UserController } from './user/user.controller'
 import { UserService } from './user/user.service'
 
-export const JWT_SECRET = process.env.JWT_SECRET
 @Module({
   imports: [
     JwtModule.register({
-      secret: JWT_SECRET,
+      secret: process.env.JWT_SECRET,
     }),
     RouterModule.register([
       {

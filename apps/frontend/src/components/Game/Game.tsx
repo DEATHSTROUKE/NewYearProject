@@ -1,3 +1,4 @@
+import { ApiError, ApiErrorString, Letter } from '@shared'
 import { AxiosError } from 'axios'
 import cn from 'classnames'
 import React, { FC, useCallback, useEffect, useState } from 'react'
@@ -8,9 +9,6 @@ import { useNewAttempt } from '@/api/newAttempt'
 import { russianLetters } from '@/config/gameData'
 
 import Spinner from '@/assets/svgs/Spinner'
-
-import { ApiError, ApiErrorString } from '@/types/error'
-import { Letter } from '@/types/game'
 
 import { Keyboard } from '../Keyboard/Keyboard'
 import { GameLetter } from './GameLetter'

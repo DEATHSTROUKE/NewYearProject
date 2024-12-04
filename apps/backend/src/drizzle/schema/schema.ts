@@ -11,6 +11,21 @@ import {
 
 import { cuid2 } from './cuid'
 
+const AdminTextsTitleEnum = [
+  'beforeGame',
+  'waitNextGame',
+  'waitEndLottery',
+  'afterLottery',
+  'feedbackQuestion',
+  'afterFeedbackResponse',
+  'prizeLevel1',
+  'prizeLevel2',
+  'prizeLevel3',
+  'prizeLevel4',
+  'prizeLevel5',
+  'textWithLink',
+] as const
+
 export const userTable = pgTable('users', {
   id: integer('id').primaryKey(),
   name: varchar('name', { length: 255 }).notNull(),
@@ -20,12 +35,12 @@ export const userTable = pgTable('users', {
   phone: varchar('phone', { length: 255 }).notNull(),
   place: varchar('place', { length: 255 }).notNull(),
   division: varchar('division', { length: 255 }).notNull(),
-  lotteryNumber: integer('lottery_number').notNull(),
-  isLotteryUser: boolean('is_lottery_user').notNull(),
+  lotteryNumber: integer('lottery_number'),
+  isLotteryUser: boolean('is_lottery_user').notNull().default(true),
 })
 
 export const gameWordsTable = pgTable('game_words', {
-  id: cuid2('id').primaryKey(),
+  id: cuid2('id').primaryKey().defaultRandom(),
   question: text('question').notNull(),
   answer: varchar('answer', { length: 255 }).notNull(),
   meaning: text('meaning').notNull(),
@@ -34,29 +49,16 @@ export const gameWordsTable = pgTable('game_words', {
 })
 
 export const reviewQuestionsTable = pgTable('reviews', {
-  id: cuid2('id').primaryKey(),
+  id: cuid2('id').primaryKey().defaultRandom(),
   question: text('question').notNull(),
   afterFeedbackResponse: text('after_feedback_response').notNull(),
 })
 
-// TODO: move to shared
-const adminTextsTitleEnum = [
-  'beforeGame',
-  'waitNextGame',
-  'waitEndLottery',
-  'afterLottery',
-  'prizeLevel1',
-  'prizeLevel2',
-  'prizeLevel3',
-  'prizeLevel4',
-  'prizeLevel5',
-] as const
-
 export const adminTextsTable = pgTable('admin_texts', {
   id: serial('id').primaryKey(),
-  title: varchar('title', { length: 255, enum: adminTextsTitleEnum })
+  title: varchar('title', { length: 255, enum: AdminTextsTitleEnum })
     .notNull()
-    .default('beforeGame'),
+    .unique(),
   text: text('text').notNull(),
   startDate: timestamp('start_date'),
   endDate: timestamp('end_date'),
@@ -69,7 +71,7 @@ export const adminTable = pgTable('admin', {
 })
 
 export const attemptsTable = pgTable('attempts', {
-  id: cuid2('id').primaryKey(),
+  id: cuid2('id').primaryKey().defaultRandom(),
   wordId: cuid2('word_id')
     .notNull()
     .references(() => gameWordsTable.id),
@@ -81,7 +83,7 @@ export const attemptsTable = pgTable('attempts', {
 })
 
 export const userReviewsTable = pgTable('user_reviews', {
-  id: cuid2('id').primaryKey(),
+  id: cuid2('id').primaryKey().defaultRandom(),
   userId: integer('user_id')
     .notNull()
     .references(() => userTable.id),
