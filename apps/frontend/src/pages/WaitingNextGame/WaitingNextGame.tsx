@@ -3,7 +3,7 @@ import { useLocation } from 'react-router-dom'
 import { HowToPlay } from '@/components/HowToPlay/HowToPlay'
 import { Message } from '@/components/Message/Message'
 import { Rules } from '@/components/Rules/Rules'
-import { Tree } from '@/components/Tree/Tree'
+import { Train } from '@/components/Train/Train'
 
 import { WaitNextGameState } from '@/types/gameState'
 
@@ -14,7 +14,7 @@ export const WaitingNextGame = () => {
   return (
     <div className="main-wrapper">
       <div className="main-page__row">
-        <Tree
+        <Train
           activeGifts={activeGifts}
           activePrizes={activePrizes}
           nonActivePrizes={nonActivePrizes}

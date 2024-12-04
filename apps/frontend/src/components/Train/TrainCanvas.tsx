@@ -1,11 +1,13 @@
 import * as PIXI from 'pixi.js'
 import { FC, useCallback, useEffect, useRef, useState } from 'react'
 
-import { TreeEntity } from './TreeEntity'
-import { TreeMessage } from './TreeMessage'
+import Train from '@/assets/images/base_illustration.webp'
+
+import { TrainEntity } from './TrainEntity'
+import { TrainMessage } from './TrainMessage'
 import { useLoadAsset } from './useLoadAsset'
 
-type TreeProps = {
+type TrainProps = {
   activeGifts: number
   activePrizes?: string
   nonActivePrizes?: string
@@ -13,21 +15,29 @@ type TreeProps = {
 
 const SpriteSheet = '/spritesheet.json'
 
-export const TreeCanvas: FC<TreeProps> = ({
+export const TrainCanvas: FC<TrainProps> = ({
   activeGifts,
   activePrizes,
   nonActivePrizes,
 }) => {
   const containerRef = useRef<HTMLDivElement>(null)
-  const [app, setApp] = useState<TreeEntity | null>(null)
+  const [app, setApp] = useState<TrainEntity | null>(null)
   const [messageText, setMessageText] = useState<string | null>(null)
 
-  const TreePath = `/Tree${activeGifts}.png`
-  const spritesheet = useLoadAsset<PIXI.Spritesheet>(SpriteSheet)
-  const trainImage = useLoadAsset<PIXI.Texture>(TreePath)
+  //const TreePath = `/Train${activeGifts}.png`
+  const TrainPath = `/sprites/base_illustration.webp`
+
+  //const spritesheet = useLoadAsset<PIXI.Spritesheet>(SpriteSheet)
+  const trainImage = useLoadAsset<PIXI.Texture>(TrainPath)
+
+  const LightPath = `/sprites/light.webp`
+  const lightImage = useLoadAsset<PIXI.Texture>(LightPath)
+
+  const SnowPath = `/sprites/Snow.webp`
+  const snowImage = useLoadAsset<PIXI.Texture>(SnowPath)
 
   useEffect(() => {
-    if (!spritesheet || !trainImage) {
+    if (!trainImage || !snowImage || !lightImage) {
       return
     }
 
@@ -36,9 +46,10 @@ export const TreeCanvas: FC<TreeProps> = ({
     const canvas = document.createElement('canvas')
     container.appendChild(canvas)
 
-    const app = new TreeEntity({
-      textures: spritesheet,
+    const app = new TrainEntity({
       trainTexture: trainImage,
+      lightTexture: lightImage,
+      snowTexture: snowImage,
       activeGifts,
       activePrizes,
       nonActivePrizes,
@@ -52,7 +63,7 @@ export const TreeCanvas: FC<TreeProps> = ({
     })
 
     setApp(app)
-  }, [spritesheet, trainImage])
+  }, [activeGifts, activePrizes, nonActivePrizes, trainImage])
 
   useEffect(() => {
     return () => {
@@ -86,7 +97,7 @@ export const TreeCanvas: FC<TreeProps> = ({
         e.stopPropagation()
       }}
     >
-      <TreeMessage text={messageText} />
+      <TrainMessage text={messageText} />
     </div>
   )
 }

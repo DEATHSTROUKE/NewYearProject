@@ -197,12 +197,12 @@ h3 {
 
 /* Registration */
 .main {
-  background: url('../assets/images/Snow1.png');
+  background: url('../assets/images_old/Snow1.png');
 }
 
 .bottom__gift {
   position: relative;
-  left: 55px;
+  /* left: 55px; */
 }
 
 .reg__wrapper {
@@ -221,6 +221,7 @@ h3 {
   flex-direction: column;
   align-items: center;
   font-family: 'Inter', sans-serif;
+  z-index: 0;
 }
 .reg-form .reg-form__wrapper {
   display: flex;
@@ -421,7 +422,7 @@ h1 {
   z-index: 2;
 }
 
-.tree-message {
+.train-message {
   position: absolute;
   width: 100%;
   bottom: 30%;
@@ -430,7 +431,7 @@ h1 {
   transition: 0.4s opacity ease-out;
 }
 
-.tree-message--visible {
+.train-message--visible {
   opacity: 1;
 }
 
@@ -681,7 +682,7 @@ h1 {
 
 .ticket__number {
   position: absolute;
-  top: 55%;
+  top: 60%;
   left: 50%;
   transform: translate(-50%, -50%);
   font-size: 120px;
@@ -845,7 +846,9 @@ h1 {
   width: 100%;
   height: 100%;
 }
-
+.top__gift {
+  z-index: 2;
+}
 /* MEDIA */
 @media screen and (max-width: 1440px) {
   .top__gift img {
@@ -853,7 +856,7 @@ h1 {
   }
 
   .bottom__gift {
-    left: 45px;
+    /* left: 45px; */
   }
   .bottom__gift img {
     width: 700px;
@@ -1074,7 +1077,7 @@ h1 {
   }
 
   .bottom__gift {
-    left: 35px;
+    /* left: 35px; */
   }
   .bottom__gift img {
     width: 568px;
@@ -1194,7 +1197,7 @@ h1 {
   }
 
   .bottom__gift {
-    left: 25px;
+    /* left: 25px; */
   }
   .bottom__gift img {
     width: 450px;
@@ -1244,7 +1247,7 @@ h1 {
   }
 
   .bottom__gift {
-    left: 20px;
+    /* left: 20px; */
   }
   .bottom__gift img {
     width: 391px;

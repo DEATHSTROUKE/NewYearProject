@@ -7,6 +7,7 @@ import { LotteryTicket } from '@/components/LotteryTicket/LotteryTicket'
 import { Meaning } from '@/components/Meaning/Meaning'
 import { Message } from '@/components/Message/Message'
 import { Rules } from '@/components/Rules/Rules'
+import { Train } from '@/components/Train/Train'
 import { Tree } from '@/components/Tree/Tree'
 
 import { useMainStore } from '@/store/mainStore'
@@ -41,8 +42,8 @@ const TestPage = () => {
   return (
     <div className="main-wrapper">
       <div className="main-page__row">
-        <Tree
-          activeGifts={3}
+        <Train
+          activeGifts={5}
           activePrizes="Активный подарок"
           nonActivePrizes="Неактивный подарок"
         />
@@ -65,6 +66,7 @@ const TestPage = () => {
           href="https://telegra.ph/Novogodnyaya-viktorina-Naryadi-svoyu-yolochku-12-12"
           target="_blank"
           className="main-page__btn"
+          rel="noreferrer"
         >
           К правилам
         </a>
@@ -92,7 +94,7 @@ const TestPage = () => {
       </div>
       {/* Порядковый номер */}
       <div className="main-page__row">
-        <LotteryTicket ticketNumber="11" textBelow="Ссылка будет позже" />
+        <LotteryTicket ticketNumber="111" textBelow="Ссылка будет позже" />
       </div>
       {/* Елка на канвасе */}
       <div className="main-page__row"></div>

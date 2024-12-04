@@ -1,16 +1,14 @@
 import { FC } from 'react'
 
-import TreeSanki from '@/assets/images_old/TreeSanki.png'
+import { TrainCanvas } from './TrainCanvas'
 
-import { TreeCanvas } from './TreeCanvas'
-
-type TreeProps = {
+type TrainProps = {
   activeGifts?: number
   activePrizes?: string
   nonActivePrizes?: string
 }
 
-export const Tree: FC<TreeProps> = ({
+export const Train: FC<TrainProps> = ({
   activeGifts,
   activePrizes,
   nonActivePrizes,
@@ -20,11 +18,9 @@ export const Tree: FC<TreeProps> = ({
       <div className="main-page__title">
         <h1>Наряди свою ёлочку Благополучия</h1>
       </div>
-
-      <img src={TreeSanki} alt="Ёлочка" />
     </div>
   ) : (
-    <TreeCanvas
+    <TrainCanvas
       activeGifts={activeGifts}
       activePrizes={activePrizes}
       nonActivePrizes={nonActivePrizes}

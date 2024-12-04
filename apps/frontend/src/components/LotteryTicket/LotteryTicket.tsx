@@ -1,6 +1,6 @@
 import { FC } from 'react'
 
-import Sphere from '@/assets/images/Sphere.png'
+import Sphere from '@/assets/images/toy.webp'
 
 type TicketProps = {
   ticketNumber: string

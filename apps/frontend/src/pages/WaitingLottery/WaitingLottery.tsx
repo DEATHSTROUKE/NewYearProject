@@ -3,7 +3,7 @@ import { useLocation } from 'react-router-dom'
 
 import { LotteryTicket } from '@/components/LotteryTicket/LotteryTicket'
 import { Message } from '@/components/Message/Message'
-import { Tree } from '@/components/Tree/Tree'
+import { Train } from '@/components/Train/Train'
 
 import { useMainStore } from '@/store/mainStore'
 
@@ -29,7 +29,7 @@ export const WaitingLottery = () => {
   return (
     <div className="main-wrapper">
       <div className="main-page__row">
-        <Tree
+        <Train
           activeGifts={activeGifts}
           activePrizes={activePrizes}
           nonActivePrizes={nonActivePrizes}

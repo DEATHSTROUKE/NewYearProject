@@ -1,7 +1,8 @@
 import axios from 'axios'
 
-import { API_URL } from '../config/config'
-import { getTgParams } from '../utils/getTgParams'
+import { API_URL, initDataRaw } from '../config/config'
+
+//import { getTgParams } from '../utils/getTgParams'
 
 interface BaseApiRequestOptions {
   url: string
@@ -14,10 +15,8 @@ export const baseApiRequest = async <T>({
   method,
   data,
 }: BaseApiRequestOptions): Promise<T> => {
-  const signature = getTgParams()
-
   const headers: Record<string, string> = {
-    Authorization: signature,
+    'X-Telegram-Auth': `${initDataRaw}`,
   }
 
   const apiUrl = `${API_URL}${url}`
