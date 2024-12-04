@@ -3,7 +3,7 @@ import { useLocation } from 'react-router-dom'
 import { HowToPlay } from '@/components/HowToPlay/HowToPlay'
 import { Message } from '@/components/Message/Message'
 import { Rules } from '@/components/Rules/Rules'
-import { Tree } from '@/components/Tree/Tree'
+import { Train } from '@/components/Train/Train'
 
 import { BeforeGameState } from '@/types/gameState'
 
@@ -14,7 +14,7 @@ export const BeforeGame = () => {
   return (
     <div className="main-wrapper">
       <div className="main-page__row">
-        <Tree />
+        <Train />
       </div>
       <div className="main-page__row">
         <Message text={text} />

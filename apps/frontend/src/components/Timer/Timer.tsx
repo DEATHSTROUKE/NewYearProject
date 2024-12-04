@@ -4,8 +4,8 @@ import { useMainStore } from '@/store/mainStore'
 
 import { getTimeDiff } from '@/utils/getTimeDiff'
 
-import TimerBg from '@/assets/images/TimerBG.png'
-import TimerSnow from '@/assets/images/TimerSnow.png'
+import TimerBg from '@/assets/images_old/TimerBG.png'
+import TimerSnow from '@/assets/images_old/TimerSnow.png'
 
 type Time = {
   days: number

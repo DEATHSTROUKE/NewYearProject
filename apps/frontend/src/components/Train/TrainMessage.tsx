@@ -5,7 +5,7 @@ type TreeMessageProps = {
   text: string | null
 }
 
-export const TreeMessage: FC<TreeMessageProps> = ({ text }) => {
+export const TrainMessage: FC<TreeMessageProps> = ({ text }) => {
   return (
     <div
       className={cn('train-message', {

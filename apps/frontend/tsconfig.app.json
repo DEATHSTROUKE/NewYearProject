@@ -29,6 +29,7 @@
     "src/**/*.jsx",
     "src/**/*.ts",
     "src/**/*.tsx",
-    "src/components/Message"
+    "src/components/Message",
+    "src/components/Train/TrainEntity.ts"
   ]
 }

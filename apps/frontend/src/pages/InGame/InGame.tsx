@@ -4,7 +4,7 @@ import { Game } from '@/components/Game/Game'
 import { HowToPlay } from '@/components/HowToPlay/HowToPlay'
 import { Message } from '@/components/Message/Message'
 import { Rules } from '@/components/Rules/Rules'
-import { Tree } from '@/components/Tree/Tree'
+import { Train } from '@/components/Train/Train'
 
 import { InGameState } from '@/types/gameState'
 
@@ -23,7 +23,7 @@ export const InGame = () => {
   return (
     <div className="main-wrapper">
       <div className="main-page__row">
-        <Tree
+        <Train
           activeGifts={activeGifts}
           activePrizes={activePrizes}
           nonActivePrizes={nonActivePrizes}

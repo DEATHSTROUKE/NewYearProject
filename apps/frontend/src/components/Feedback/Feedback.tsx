@@ -3,8 +3,8 @@ import { FC, useEffect, useState } from 'react'
 
 import { useSendFeedback } from '@/api/sendFeedback'
 
-import giftBottom from '@/assets/images/gift_bottom.png'
-import giftTop from '@/assets/images/gift_top.png'
+import giftBottom from '@/assets/images/gift_bottom.webp'
+import giftTop from '@/assets/images/gift_top.webp'
 import Spinner from '@/assets/svgs/Spinner'
 
 import { ApiError } from '@/types/error'

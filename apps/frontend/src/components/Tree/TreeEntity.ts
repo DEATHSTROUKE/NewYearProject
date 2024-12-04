@@ -32,7 +32,7 @@ export class TreeEntity extends PIXI.Application {
   constructor(treeEntityOptions: TreeEntityOptions) {
     const {
       textures,
-      treeTexture,
+      trainTexture: treeTexture,
       activeGifts,
       activePrizes,
       nonActivePrizes,

@@ -2,7 +2,7 @@ import { useLayoutEffect } from 'react'
 import { useLocation } from 'react-router-dom'
 
 import { Message } from '@/components/Message/Message'
-import { Tree } from '@/components/Tree/Tree'
+import { Train } from '@/components/Train/Train'
 
 import { useMainStore } from '@/store/mainStore'
 
@@ -20,7 +20,7 @@ export const AfterLottery = () => {
   return (
     <div className="main-wrapper">
       <div className="main-page__row">
-        <Tree activeGifts={activeGifts} />
+        <Train activeGifts={activeGifts} />
       </div>
       <div className="main-page__row">
         <Message text={text} />

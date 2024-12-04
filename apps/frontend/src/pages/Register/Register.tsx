@@ -5,8 +5,8 @@ import { useRegister } from '@/api/register'
 
 import { Input } from '@/components/Input/Input'
 
-import giftBottom from '@/assets/images/gift_bottom.png'
-import giftTop from '@/assets/images/gift_top.png'
+import giftBottom from '@/assets/images/gift_bottom.webp'
+import giftTop from '@/assets/images/gift_top.webp'
 import Spinner from '@/assets/svgs/Spinner'
 
 import { ApiError } from '@/types/error'
