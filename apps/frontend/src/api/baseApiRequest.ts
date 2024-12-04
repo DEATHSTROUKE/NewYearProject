@@ -1,12 +1,9 @@
-import { init, retrieveLaunchParams } from '@telegram-apps/sdk'
 import axios from 'axios'
 
-import { API_URL } from '../config/config'
+import { API_URL, initDataRaw } from '../config/config'
 
 //import { getTgParams } from '../utils/getTgParams'
-init()
 
-const { initDataRaw } = retrieveLaunchParams()
 interface BaseApiRequestOptions {
   url: string
   method?: 'GET' | 'POST' | 'PUT' | 'DELETE' | 'PATCH'
