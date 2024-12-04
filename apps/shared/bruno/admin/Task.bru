@@ -7,9 +7,13 @@ meta {
 get {
   url: https://localhost:3000/api/admin/task
   body: none
-  auth: none
+  auth: bearer
 }
 
 headers {
   accept: application/json
+}
+
+auth:bearer {
+  token: {{token}}
 }

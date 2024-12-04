@@ -1,15 +1,19 @@
 meta {
   name: Get Full User
   type: http
-  seq: 8
+  seq: 9
 }
 
 get {
   url: https://localhost:3000/api/admin/user/1
   body: none
-  auth: none
+  auth: bearer
 }
 
 headers {
   accept: application/json
+}
+
+auth:bearer {
+  token: {{token}}
 }

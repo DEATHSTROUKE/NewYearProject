@@ -1,15 +1,19 @@
 meta {
   name: Get Short User
   type: http
-  seq: 7
+  seq: 8
 }
 
 get {
-  url: https://localhost:3000/api/admin/users
+  url: {{url}}/admin/users
   body: none
-  auth: none
+  auth: bearer
 }
 
 headers {
   accept: application/json
+}
+
+auth:bearer {
+  token: {{token}}
 }

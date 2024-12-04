@@ -1,3 +1,4 @@
+import bcrypt from 'bcrypt'
 import dotenv from 'dotenv'
 import { sql } from 'drizzle-orm'
 import { drizzle } from 'drizzle-orm/node-postgres'
@@ -31,32 +32,43 @@ async function seed() {
 
   // console.info(rusWordsInserted.length)
 
-  const adminTextsTitleEnum = [
-    'beforeGame',
-    'waitNextGame',
-    'waitEndLottery',
-    'afterLottery',
-    'prizeLevel1',
-    'prizeLevel2',
-    'prizeLevel3',
-    'prizeLevel4',
-    'prizeLevel5',
-  ] as const
+  // const adminTextsTitleEnum = [
+  //   'beforeGame',
+  //   'waitNextGame',
+  //   'waitEndLottery',
+  //   'afterLottery',
+  //   'prizeLevel1',
+  //   'prizeLevel2',
+  //   'prizeLevel3',
+  //   'prizeLevel4',
+  //   'prizeLevel5',
+  // ] as const
 
-  const adminTextsInserted = await db
-    .insert(schema.adminTextsTable)
-    .values(
-      adminTextsTitleEnum.map(title => ({
-        title,
-        text: '',
-        startDate: null,
-        endDate: null,
-      })),
-    )
-    .returning()
+  // const adminTextsInserted = await db
+  //   .insert(schema.adminTextsTable)
+  //   .values(
+  //     adminTextsTitleEnum.map(title => ({
+  //       title,
+  //       text: '',
+  //       startDate: null,
+  //       endDate: null,
+  //     })),
+  //   )
+  //   .returning()
 
-  console.info(adminTextsInserted.length)
+  // console.info(adminTextsInserted.length)
 
+  const newAdmin = {
+    login: process.env.ADMIN_LOGIN,
+    password: process.env.ADMIN_PASSWORD,
+  }
+
+  if (newAdmin.login && newAdmin.password) {
+    await db.insert(schema.adminTable).values({
+      login: newAdmin.login,
+      password: await bcrypt.hash(newAdmin.password, 10),
+    })
+  }
   pool.end()
 }
 

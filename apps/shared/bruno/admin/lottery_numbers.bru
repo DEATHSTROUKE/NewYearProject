@@ -1,11 +1,15 @@
 meta {
   name: lottery_numbers
   type: http
-  seq: 11
+  seq: 12
 }
 
 get {
   url: https://localhost:3000/api/admin/excel/lottery_numbers
   body: none
-  auth: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{token}}
 }
