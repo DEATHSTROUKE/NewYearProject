@@ -1,0 +1,29 @@
+meta {
+  name: Get Admin Texts
+  type: http
+  seq: 6
+}
+
+get {
+  url: {{url}}/admin/text
+  body: json
+  auth: bearer
+}
+
+headers {
+  accept: */*
+  Content-Type: application/json
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+body:json {
+  {
+    "title": "string",
+    "text": "string",
+    "startDate": "2024-12-02T20:49:28.020Z",
+    "endDate": "2024-12-02T20:49:28.020Z"
+  }
+}

@@ -1,0 +1,23 @@
+meta {
+  name: Sign In
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{url}}/admin/sign_in
+  body: json
+  auth: none
+}
+
+headers {
+  accept: application/json
+  Content-Type: application/json
+}
+
+body:json {
+  {
+    "login": "admin",
+    "password": "test-password"
+  }
+}

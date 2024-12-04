@@ -1,0 +1,24 @@
+meta {
+  name: Disable user
+  type: http
+  seq: 10
+}
+
+post {
+  url: https://localhost:3000/api/admin/user/1/changeIsLotteryUser
+  body: json
+  auth: bearer
+}
+
+headers {
+  accept: */*
+  Content-Type: application/json
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+body:json {
+  { "isLotteryUser": true }
+}

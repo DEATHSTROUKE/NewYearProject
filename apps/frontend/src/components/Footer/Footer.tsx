@@ -21,7 +21,7 @@ export const Footer = () => {
             </div>
             <div className="footer__column">
               <div className="footer__text text__light">
-                ©2023 «Благополучие»
+                ©2024 «Благополучие»
               </div>
               <div className="footer__text text__light">Все права защищены</div>
               <div className="footer__text">
@@ -90,7 +90,7 @@ export const Footer = () => {
             <div className="footer__row">
               <div className="footer__column">
                 <div className="footer__text text__light">
-                  ©2023 «Благополучие»
+                  ©2024 «Благополучие»
                 </div>
                 <div className="footer__text text__light">
                   Все права защищены

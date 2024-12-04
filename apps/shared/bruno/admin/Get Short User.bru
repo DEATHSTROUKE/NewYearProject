@@ -1,0 +1,19 @@
+meta {
+  name: Get Short User
+  type: http
+  seq: 8
+}
+
+get {
+  url: {{url}}/admin/users
+  body: none
+  auth: bearer
+}
+
+headers {
+  accept: application/json
+}
+
+auth:bearer {
+  token: {{token}}
+}
