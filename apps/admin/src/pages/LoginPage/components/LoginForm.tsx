@@ -1,14 +1,19 @@
+import { adminApi } from '@/api'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { Button, Sheet, Stack, Typography } from '@mui/joy'
 import { useForm } from 'react-hook-form'
-
-import { useLogin } from '@/api/login'
+import { useNavigate } from 'react-router-dom'
 
 import { Input } from '@/components/Input/Input'
+
+import { ROUTES } from '@/config/routes'
+
+import { saveAccessToken } from '@/utils/login'
 
 import { LoginRequestData, TLoginRequestData } from '@/types/login'
 
 export const LoginForm = () => {
+  const navigate = useNavigate()
   const {
     register,
     handleSubmit,
@@ -17,15 +22,25 @@ export const LoginForm = () => {
   } = useForm<TLoginRequestData>({
     resolver: zodResolver(LoginRequestData),
     defaultValues: {
-      mail: '',
+      login: '',
       password: '',
     },
   })
 
-  const { isPending, login } = useLogin()
+  const { isPending, mutate: login } = adminApi.usePostApiAdminSignIn({
+    mutation: {
+      onSuccess: ({ token }) => {
+        if (token) {
+          saveAccessToken(token)
+        }
+        console.info('Login success')
+        navigate(ROUTES.Dashboard)
+      },
+    },
+  })
 
   const onSubmit = (data: TLoginRequestData) => {
-    login(data)
+    login({ data: data })
   }
 
   return (
@@ -39,19 +54,16 @@ export const LoginForm = () => {
           minWidth: '500px',
         }}
       >
-        <Typography
-          level="h2"
-          sx={{ mb: '60px' }}
-        >
+        <Typography level="h2" sx={{ mb: '60px' }}>
           Вход в систему
         </Typography>
 
         <Stack rowGap={'20px'}>
           <Input
             label="Логин"
-            {...register('mail')}
-            onBlur={() => trigger('mail')}
-            textError={errors.mail?.message}
+            {...register('login')}
+            onBlur={() => trigger('login')}
+            textError={errors.login?.message}
           />
           <Input
             label="Пароль"
@@ -59,11 +71,7 @@ export const LoginForm = () => {
             {...register('password')}
             textError={errors.password?.message}
           />
-          <Button
-            type="submit"
-            disabled={!isValid}
-            loading={isPending}
-          >
+          <Button type="submit" disabled={!isValid} loading={isPending}>
             Войти
           </Button>
         </Stack>

@@ -1,6 +1,6 @@
+import { RegisterFields } from '@shared'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 
-import { RegisterFields } from '../../../shared/src/api/register'
 import { baseApiRequest } from './baseApiRequest'
 
 export const useRegister = () => {
@@ -8,7 +8,7 @@ export const useRegister = () => {
   return useMutation({
     mutationFn: (mutationData: RegisterFields) => {
       return baseApiRequest({
-        url: '/auth/register/v2',
+        url: '/register',
         method: 'POST',
         data: mutationData,
       })

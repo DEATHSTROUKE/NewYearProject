@@ -22,15 +22,12 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
     return (
       <Box>
         {label && (
-          <Typography
-            fontWeight={labelStyle}
-            sx={{ mb: '5px' }}
-          >
+          <Typography fontWeight={labelStyle} sx={{ mb: '5px' }}>
             {label}
           </Typography>
         )}
         <MUITextarea
-          minRows={6}
+          minRows={3}
           slotProps={{ textarea: { ref } }}
           error={!!textError}
           {...props}

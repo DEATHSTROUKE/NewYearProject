@@ -24,13 +24,12 @@ export type InGameState = {
   letters: Letter[]
   wordLength: number
   currentLine: number
+  hasNextButton: boolean
+  isFinished: boolean
 } & Gifts
 
 export type WaitFeedbackState = {
   gameState: 'waitFeedback'
-  text: string
-  letters: Letter[]
-  wordLength: number
   feedbackQuestion: string
   afterFeedbackResponse: string
 } & Gifts

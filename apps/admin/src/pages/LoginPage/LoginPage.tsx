@@ -7,10 +7,7 @@ import { LoginForm } from './components/LoginForm'
 export const Component = () => {
   return (
     <Box sx={{ height: '100%' }}>
-      <Stack
-        direction={'row'}
-        sx={{ width: '100%', height: '100%' }}
-      >
+      <Stack direction={'row'} sx={{ width: '100%', height: '100%' }}>
         <Stack
           sx={{ width: '100%', height: '100%', background: 'var(--bg-color)' }}
           justifyContent={'center'}
@@ -19,7 +16,7 @@ export const Component = () => {
           <LoginForm />
         </Stack>
         <Stack
-          sx={{ background: '#49C8FF', width: '100%', position: 'relative' }}
+          sx={{ background: '#e12c31dd', width: '100%', position: 'relative' }}
           justifyContent={'center'}
           alignItems={'center'}
         >
@@ -39,7 +36,7 @@ export const Component = () => {
                 '-1px 0 black, 0 1px black, 1px 0 black, 0 -1px black, 6px 6px 0px #0D0D0D',
             }}
           >
-            OFFICE TOURS
+            БЛАГО 2025
           </Typography>
           <Box
             sx={{

@@ -10,20 +10,20 @@ import { baseApiRequest } from './baseApiRequest'
 const audio = new Audio(Sound)
 
 type SuccessRes = {
-  shouldSound: boolean
+  isCorrect: boolean
 }
 
 type NewAttemptParams = {
-  clearField: () => void
+  callback: (data: SuccessRes) => void
 }
 
-export const useNewAttempt = ({ clearField }: NewAttemptParams) => {
+export const useNewAttempt = ({ callback }: NewAttemptParams) => {
   const client = useQueryClient()
   return useMutation({
     mutationKey: ['newAttempt'],
     mutationFn: (mutationData: NewAttemptData) => {
       return baseApiRequest<SuccessRes>({
-        url: '/game/new_attempt/v2',
+        url: '/new_attempt',
         method: 'POST',
         data: mutationData,
       })
@@ -31,14 +31,14 @@ export const useNewAttempt = ({ clearField }: NewAttemptParams) => {
     retry: false,
     onSuccess: (data: SuccessRes) => {
       client.invalidateQueries({ queryKey: ['getState'] })
-      clearField()
-      if (data.shouldSound && checkSound()) {
+      callback(data)
+      if (data.isCorrect && checkSound()) {
         audio.play()
       }
     },
     onError: (error: AxiosError) => {
       const err = error as AxiosError<ApiError>
-      if (err.response?.data.exception === ApiErrorString.OldState) {
+      if (err.response?.data.message === ApiErrorString.OldState) {
         client.invalidateQueries({ queryKey: ['getState'] })
       }
     },

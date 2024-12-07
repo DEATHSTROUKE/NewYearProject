@@ -1,0 +1,478 @@
+{
+  "openapi": "3.0.0",
+  "servers": [
+    {
+      "url": "https://localhost:3000"
+    }
+  ],
+  "info": {
+    "title": "New Year Game API",
+    "version": "1.0.0"
+  },
+  "paths": {
+    "/api/admin/sign_in": {
+      "post": {
+        "tags": ["Admin"],
+        "summary": "Admin sign in",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SignInRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SignInResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/admin/check": {
+      "get": {
+        "tags": ["Admin"],
+        "summary": "Admin check auth",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/admin/task": {
+      "get": {
+        "tags": ["Admin"],
+        "security": [{ "bearerAuth": [] }],
+        "summary": "Get all tasks",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Task"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": ["Admin"],
+        "security": [{ "bearerAuth": [] }],
+        "summary": "Create new task",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateTaskRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/admin/task/{id}": {
+      "patch": {
+        "tags": ["Admin"],
+        "security": [{ "bearerAuth": [] }],
+        "summary": "Update task",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateTaskRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      },
+      "delete": {
+        "tags": ["Admin"],
+        "security": [{ "bearerAuth": [] }],
+        "summary": "Delete task",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/admin/text": {
+      "patch": {
+        "tags": ["Admin"],
+        "security": [{ "bearerAuth": [] }],
+        "summary": "Update lottery text and time",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateTextRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      },
+      "get": {
+        "tags": ["Admin"],
+        "security": [{ "bearerAuth": [] }],
+        "summary": "Get all texts",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/GetAdminTextsRequest"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/admin/users": {
+      "get": {
+        "tags": ["Admin"],
+        "security": [{ "bearerAuth": [] }],
+        "summary": "Get all users",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/UserBasic"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/admin/users/{id}": {
+      "get": {
+        "tags": ["Admin"],
+        "security": [{ "bearerAuth": [] }],
+        "summary": "Get user details",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserDetailed"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/admin/users/{id}/changeIsLotteryUser": {
+      "patch": {
+        "tags": ["Admin"],
+        "security": [{ "bearerAuth": [] }],
+        "summary": "Change user lottery status",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "isLotteryUser": {
+                    "type": "boolean"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/admin/excel/all_reviews": {
+      "get": {
+        "tags": ["Admin"],
+        "security": [{ "bearerAuth": [] }],
+        "summary": "Download reviews excel",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet": {
+                "schema": {
+                  "type": "string",
+                  "format": "binary"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/admin/excel/lottery_numbers": {
+      "get": {
+        "tags": ["Admin"],
+        "security": [{ "bearerAuth": [] }],
+        "summary": "Download lottery numbers excel",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet": {
+                "schema": {
+                  "type": "string",
+                  "format": "binary"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "SignInRequest": {
+        "type": "object",
+        "properties": {
+          "login": { "type": "string" },
+          "password": { "type": "string" }
+        },
+        "required": ["login", "password"]
+      },
+      "SignInResponse": {
+        "type": "object",
+        "properties": {
+          "token": { "type": "string" }
+        }
+      },
+      "Task": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string" },
+          "question": { "type": "string" },
+          "answer": { "type": "string" },
+          "meaning": { "type": "string" },
+          "wordIndex": { "type": "integer" },
+          "startDate": { "type": "string", "format": "date-time" }
+        },
+        "required": [
+          "id",
+          "question",
+          "answer",
+          "meaning",
+          "wordIndex",
+          "startDate"
+        ]
+      },
+      "CreateTaskRequest": {
+        "type": "object",
+        "properties": {
+          "question": { "type": "string" },
+          "answer": { "type": "string" },
+          "meaning": { "type": "string" },
+          "wordIndex": { "type": "integer" },
+          "startDate": { "type": "string", "format": "date-time" }
+        },
+        "required": ["question", "answer", "meaning", "wordIndex", "startDate"]
+      },
+      "UpdateTaskRequest": {
+        "type": "object",
+        "properties": {
+          "question": { "type": "string" },
+          "answer": { "type": "string" },
+          "meaning": { "type": "string" },
+          "wordIndex": { "type": "integer" },
+          "startDate": { "type": "string", "format": "date-time" }
+        }
+      },
+      "GetAdminTextsRequest": {
+        "type": "object",
+        "properties": {
+          "title": { "type": "string" },
+          "text": { "type": "string" },
+          "startDate": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "endDate": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          }
+        },
+        "required": ["title", "text", "startDate", "endDate"]
+      },
+      "UpdateTextRequest": {
+        "type": "object",
+        "properties": {
+          "title": { "type": "string" },
+          "text": { "type": "string" },
+          "startDate": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "endDate": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          }
+        }
+      },
+      "UserBasic": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "integer" },
+          "name": { "type": "string" },
+          "surname": { "type": "string" },
+          "middleName": { "type": "string" },
+          "phone": { "type": "string" },
+          "correctAttempts": { "type": "integer" }
+        },
+        "required": [
+          "id",
+          "name",
+          "surname",
+          "middleName",
+          "phone",
+          "correctAttempts"
+        ]
+      },
+      "UserDetailed": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "integer" },
+          "name": { "type": "string" },
+          "surname": { "type": "string" },
+          "middleName": { "type": "string" },
+          "email": { "type": "string" },
+          "phone": { "type": "string" },
+          "place": { "type": "string" },
+          "division": { "type": "string" },
+          "lotteryNumber": { "type": "integer" },
+          "answers": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": { "type": "string" },
+                "correctWord": { "type": "string" },
+                "attempts": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": { "type": "string" },
+                      "word": { "type": "string" },
+                      "createdAt": { "type": "string", "format": "date-time" }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "reviews": {
+            "type": "object",
+            "properties": {
+              "text": { "type": "string" },
+              "createdAt": { "type": "string", "format": "date-time" }
+            }
+          }
+        }
+      }
+    },
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    }
+  }
+}

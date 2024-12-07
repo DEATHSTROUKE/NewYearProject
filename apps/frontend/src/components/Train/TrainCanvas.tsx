@@ -1,25 +1,19 @@
 import * as PIXI from 'pixi.js'
 import { FC, useCallback, useEffect, useRef, useState } from 'react'
 
-import Train from '@/assets/images/base_illustration.webp'
-
 import { TrainEntity } from './TrainEntity'
 import { TrainMessage } from './TrainMessage'
 import { useLoadAsset } from './useLoadAsset'
 
 type TrainProps = {
   activeGifts: number
-  activePrizes?: string
-  nonActivePrizes?: string
+  prizesText?: string[]
 }
-
-const SpriteSheet = '/spritesheet.json'
 
 export const TrainCanvas: FC<TrainProps> = ({
   activeGifts,
-  activePrizes,
-  nonActivePrizes,
-}) => {
+  prizesText,
+}: TrainProps) => {
   const containerRef = useRef<HTMLDivElement>(null)
   const [app, setApp] = useState<TrainEntity | null>(null)
   const [messageText, setMessageText] = useState<string | null>(null)
@@ -51,11 +45,10 @@ export const TrainCanvas: FC<TrainProps> = ({
       lightTexture: lightImage,
       snowTexture: snowImage,
       activeGifts,
-      activePrizes,
-      nonActivePrizes,
+      prizesText,
       setMessage: setMessageText,
       width: window.innerWidth,
-      // height: window.innerHeight,
+      height: window.innerWidth,
       resolution: window.devicePixelRatio,
       backgroundAlpha: 0,
       antialias: true,
@@ -63,7 +56,7 @@ export const TrainCanvas: FC<TrainProps> = ({
     })
 
     setApp(app)
-  }, [activeGifts, activePrizes, nonActivePrizes, trainImage])
+  }, [activeGifts, trainImage])
 
   useEffect(() => {
     return () => {

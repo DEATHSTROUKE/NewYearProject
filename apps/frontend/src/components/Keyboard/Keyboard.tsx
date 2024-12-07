@@ -1,8 +1,6 @@
+import { Letter } from '@shared'
 import cn from 'classnames'
-import { FC, useEffect } from 'react'
-
-import { ClickEvent } from '@/types/event'
-import { Letter } from '@/types/game'
+import React, { FC, useEffect } from 'react'
 
 import { KeyboardLetter } from './KeyboardLetter'
 import { keyboardData } from './keyboardData'
@@ -27,17 +25,20 @@ export const Keyboard: FC<KeyboardProps> = ({
   canAttempt,
 }) => {
   const keyboardDataWithState = setKeyboardState(keyboardData, letters)
-  const onClickLetter = (e: ClickEvent, key: string) => {
+  const onClickLetter = (
+    e: React.MouseEvent<HTMLButtonElement>,
+    key: string,
+  ) => {
     e.stopPropagation()
     onChangeInput(key)
   }
 
-  const onClickEnter = async (e: ClickEvent) => {
+  const onClickEnter = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation()
     onNewAttempt()
   }
 
-  const onClickDelete = (e: ClickEvent) => {
+  const onClickDelete = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation()
     onChangeInput()
   }

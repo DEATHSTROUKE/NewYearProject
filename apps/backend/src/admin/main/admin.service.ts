@@ -33,7 +33,9 @@ export class AdminService {
   }
 
   async getTexts() {
-    return await this.db.query.adminTextsTable.findMany()
+    return await this.db.query.adminTextsTable.findMany({
+      orderBy: schema.adminTextsTable.id,
+    })
   }
 
   async editText({ title, text, startDate, endDate }: EditTextDto) {

@@ -10,7 +10,9 @@ export class TaskService {
   constructor(@Inject(DATABASE_CONNECTION) private readonly db: DB_TYPE) {}
 
   async findAll() {
-    return this.db.query.gameWordsTable.findMany()
+    return this.db.query.gameWordsTable.findMany({
+      orderBy: schema.gameWordsTable.wordIndex,
+    })
   }
 
   async create(task: CreateTaskDto) {

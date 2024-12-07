@@ -1,4 +1,5 @@
 import { ApiError, ApiErrorString, Letter } from '@shared'
+import { useQueryClient } from '@tanstack/react-query'
 import { AxiosError } from 'axios'
 import cn from 'classnames'
 import React, { FC, useCallback, useEffect, useState } from 'react'
@@ -18,6 +19,7 @@ type GameProps = {
   wordLength: number
   currentLine?: number
   isEnd: boolean
+  hasNextButton?: boolean
 }
 
 export const Game: FC<GameProps> = ({
@@ -25,7 +27,10 @@ export const Game: FC<GameProps> = ({
   wordLength,
   currentLine = 0,
   isEnd,
+  hasNextButton,
 }) => {
+  const queryClient = useQueryClient()
+
   const freeCellsCount = !isEnd
     ? (5 - currentLine - 1) * wordLength
     : 5 * wordLength - letters.length
@@ -42,14 +47,20 @@ export const Game: FC<GameProps> = ({
 
   const [isKeyboardOpen, setIsKeyboardOpen] = useState(false)
   const [canAttempt, setCanAttempt] = useState(false)
-  const clearField = () => setInputWord(new Array(wordLength).fill(''))
+
+  const gameSuccessCallback = (data: { isCorrect: boolean }) => {
+    setInputWord(new Array(wordLength).fill(''))
+    if (data.isCorrect) {
+      setIsKeyboardOpen(false)
+    }
+  }
 
   const {
     mutate: sendNewAttempt,
     error: mutateError,
     isError,
     isPending,
-  } = useNewAttempt({ clearField })
+  } = useNewAttempt({ callback: gameSuccessCallback })
 
   const onNewAttempt = useCallback(() => {
     if (inputWord.some(item => item === '')) return
@@ -107,7 +118,7 @@ export const Game: FC<GameProps> = ({
   useEffect(() => {
     if (isError && mutateError instanceof AxiosError) {
       const err = mutateError as AxiosError<ApiError>
-      if (err.response?.data.exception === ApiErrorString.NoWordInDictionary) {
+      if (err.response?.data.message === ApiErrorString.NoWordInDictionary) {
         return setError('Некорректное слово')
       }
 
@@ -165,6 +176,19 @@ export const Game: FC<GameProps> = ({
             </div>
             <button className="main-page__btn" onClick={() => onNewAttempt()}>
               Проверить
+            </button>
+          </div>
+        )}
+
+        {hasNextButton && (
+          <div className="game-field__interface">
+            <button
+              className="main-page__btn"
+              onClick={() =>
+                queryClient.invalidateQueries({ queryKey: ['getState'] })
+              }
+            >
+              Далее
             </button>
           </div>
         )}

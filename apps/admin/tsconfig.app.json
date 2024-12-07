@@ -9,6 +9,7 @@
       "vite/client"
     ],
     "paths": {
+      "@shared": ["apps/shared/src/index.ts"],
       "@/*": ["apps/admin/src/*"]
     }
   },

@@ -1,10 +1,7 @@
 import { z } from 'zod'
 
 export const LoginRequestData = z.object({
-  mail: z
-    .string()
-    .trim()
-    .regex(/.*@avito\.ru$/, { message: 'Используйте почту @avito.ru ' }),
+  login: z.string().trim(),
   password: z.string().trim().min(1),
 })
 
@@ -16,5 +13,4 @@ export const LoginResponseData = z.object({
 
 export const CheckResponseData = z.object({
   token: z.string(),
-  mail: z.string(),
 })

@@ -15,7 +15,6 @@ export interface TrainEntityOptions extends Partial<PIXI.IApplicationOptions> {
   lightTexture: PIXI.Texture
   snowTexture: PIXI.Texture
   activeGifts: number
-  activePrizes?: string
-  nonActivePrizes?: string
+  prizesText?: string[]
   setMessage: (text: string | null) => void
 }

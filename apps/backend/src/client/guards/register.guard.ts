@@ -6,6 +6,9 @@ import {
   Injectable,
   UnauthorizedException,
 } from '@nestjs/common'
+import { ApiErrorString } from '@shared'
+
+import { getTelegramId } from './getTelegramId'
 
 @Injectable()
 export class TgRegisterGuard implements CanActivate {
@@ -14,12 +17,10 @@ export class TgRegisterGuard implements CanActivate {
   async canActivate(context: ExecutionContext): Promise<boolean> {
     const request = context.switchToHttp().getRequest()
 
-    const token = request.headers['x-telegram-auth']
-    const user = new URLSearchParams(token).get('user') || ''
-    const telegramId = parseInt(JSON.parse(user).id || '')
+    const telegramId = getTelegramId(request.headers['x-telegram-auth'])
 
     if (!telegramId) {
-      throw new UnauthorizedException()
+      throw new UnauthorizedException(ApiErrorString.BadRequest)
     }
 
     request['userId'] = telegramId

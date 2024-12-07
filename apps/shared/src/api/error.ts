@@ -7,5 +7,5 @@ export enum ApiErrorString {
 }
 
 export type ApiError = {
-  exception: ApiErrorString
+  message: ApiErrorString
 }

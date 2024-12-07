@@ -2,6 +2,8 @@ import axios from 'axios'
 
 import { envConfig } from '@/config/constants'
 
+import { getAccessToken } from '@/utils/login'
+
 interface BaseApiRequestOptions {
   url: string
   method?: 'GET' | 'POST' | 'PUT' | 'DELETE' | 'PATCH'
@@ -21,12 +23,12 @@ export const baseApiRequest = async <T>({
   headers: addHeaders,
   responseType,
 }: BaseApiRequestOptions): Promise<T> => {
-  const signature = envConfig.locationSearch
+  const signature = getAccessToken()
 
   const urlParams = new URLSearchParams(params)
 
   const headers: Record<string, string> = {
-    Authorization: signature,
+    Authorization: `Bearer ${signature}`,
     ...(envConfig.isDev && { 'ngrok-skip-browser-warning': 'true' }),
     ...addHeaders,
   }

@@ -9,22 +9,8 @@ import {
   varchar,
 } from 'drizzle-orm/pg-core'
 
+import { AdminTextsTitleEnum } from '../seed/constants'
 import { cuid2 } from './cuid'
-
-const AdminTextsTitleEnum = [
-  'beforeGame',
-  'waitNextGame',
-  'waitEndLottery',
-  'afterLottery',
-  'feedbackQuestion',
-  'afterFeedbackResponse',
-  'prizeLevel1',
-  'prizeLevel2',
-  'prizeLevel3',
-  'prizeLevel4',
-  'prizeLevel5',
-  'textWithLink',
-] as const
 
 export const userTable = pgTable('users', {
   id: integer('id').primaryKey(),
@@ -35,8 +21,9 @@ export const userTable = pgTable('users', {
   phone: varchar('phone', { length: 255 }).notNull(),
   place: varchar('place', { length: 255 }).notNull(),
   division: varchar('division', { length: 255 }).notNull(),
-  lotteryNumber: integer('lottery_number'),
+  lotteryNumber: integer('lottery_number').unique(),
   isLotteryUser: boolean('is_lottery_user').notNull().default(true),
+  watchedResult: boolean('watched_result').notNull().default(false),
 })
 
 export const gameWordsTable = pgTable('game_words', {
@@ -46,12 +33,6 @@ export const gameWordsTable = pgTable('game_words', {
   meaning: text('meaning').notNull(),
   wordIndex: integer('word_index').notNull(),
   startDate: timestamp('start_date').notNull(),
-})
-
-export const reviewQuestionsTable = pgTable('reviews', {
-  id: cuid2('id').primaryKey().defaultRandom(),
-  question: text('question').notNull(),
-  afterFeedbackResponse: text('after_feedback_response').notNull(),
 })
 
 export const adminTextsTable = pgTable('admin_texts', {
@@ -72,6 +53,7 @@ export const adminTable = pgTable('admin', {
 
 export const attemptsTable = pgTable('attempts', {
   id: cuid2('id').primaryKey().defaultRandom(),
+  answer: varchar('answer', { length: 255 }).notNull(),
   wordId: cuid2('word_id')
     .notNull()
     .references(() => gameWordsTable.id),
@@ -87,9 +69,6 @@ export const userReviewsTable = pgTable('user_reviews', {
   userId: integer('user_id')
     .notNull()
     .references(() => userTable.id),
-  reviewId: cuid2('review_id')
-    .notNull()
-    .references(() => reviewQuestionsTable.id),
   text: text('text').notNull(),
   createdAt: timestamp('created_at').notNull().defaultNow(),
 })
@@ -115,23 +94,12 @@ export const attemptsTableRelations = relations(attemptsTable, ({ one }) => ({
   }),
 }))
 
-export const reviewQuestionsTableRelations = relations(
-  reviewQuestionsTable,
-  ({ many }) => ({
-    reviews: many(userReviewsTable),
-  }),
-)
-
 export const userReviewsTableRelations = relations(
   userReviewsTable,
   ({ one }) => ({
     user: one(userTable, {
       fields: [userReviewsTable.userId],
       references: [userTable.id],
-    }),
-    reviewQuestion: one(reviewQuestionsTable, {
-      fields: [userReviewsTable.reviewId],
-      references: [reviewQuestionsTable.id],
     }),
   }),
 )

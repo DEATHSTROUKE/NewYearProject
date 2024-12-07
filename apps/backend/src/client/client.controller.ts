@@ -12,25 +12,27 @@ export class ClientController {
 
   @UseGuards(TgAuthGuard)
   @Get('getState')
-  getState(@Req() request: Request): GetState | object {
-    return this.clientService.getState(request['userId'])
+  async getState(@Req() request: Request): Promise<GetState | object> {
+    return await this.clientService.getState(request['userId'])
   }
 
   @UseGuards(TgAuthGuard)
   @Post('new_attempt')
-  newAttempt(@Req() request: Request, @Body() body: NewAttemptData) {
-    return this.clientService.newAttempt(request['userId'], body)
+  async newAttempt(@Req() request: Request, @Body() body: NewAttemptData) {
+    return await this.clientService.newAttempt(request['userId'], body)
   }
 
   @UseGuards(TgRegisterGuard)
   @Post('register')
-  register(@Req() request: Request, @Body() body: RegisterFields) {
-    return this.clientService.register(request['userId'], body)
+  async register(@Req() request: Request, @Body() body: RegisterFields) {
+    await this.clientService.register(request['userId'], body)
+    return { status: 'ok' }
   }
 
   @UseGuards(TgAuthGuard)
   @Post('sendFeedback')
-  sendFeedback(@Req() request: Request, @Body() body: FeedbackData) {
-    return this.clientService.sendFeedback(request['userId'], body)
+  async sendFeedback(@Req() request: Request, @Body() body: FeedbackData) {
+    await this.clientService.sendFeedback(request['userId'], body)
+    return { status: 'ok' }
   }
 }

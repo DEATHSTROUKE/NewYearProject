@@ -6,7 +6,6 @@ import { Toaster } from 'sonner'
 import { theme } from '@/config/theme'
 
 import { Main } from '../Main/Main'
-import { Modals } from '../Modals/Modals'
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -22,11 +21,7 @@ export const App = () => {
       <CssVarsProvider theme={theme}>
         <QueryClientProvider client={queryClient}>
           <Main />
-          <Modals />
-          <Toaster
-            richColors
-            position="bottom-right"
-          />
+          <Toaster richColors position="bottom-right" />
           <ReactQueryDevtools initialIsOpen={false} />
         </QueryClientProvider>
       </CssVarsProvider>

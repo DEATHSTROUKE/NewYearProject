@@ -2,7 +2,7 @@ import { defineConfig } from 'orval'
 
 export default defineConfig({
   main: {
-    input: '../shared/src/swagger/schema.json',
+    input: '../shared/src/swagger/admin.json',
     output: {
       target: './src/api/generated/users',
       schemas: './src/api/generated/users/model',

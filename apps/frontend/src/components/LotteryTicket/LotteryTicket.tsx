@@ -15,7 +15,7 @@ export const LotteryTicket: FC<TicketProps> = ({ ticketNumber, textBelow }) => {
         <img src={Sphere} alt="Шар" />
         <div className="ticket__number">{ticketNumber}</div>
       </div>
-      <div className="ticket__text">{textBelow}</div>
+      {textBelow && <div className="ticket__text">{textBelow}</div>}
     </div>
   )
 }

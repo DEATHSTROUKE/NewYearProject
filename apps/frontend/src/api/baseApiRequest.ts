@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-import { API_URL, initDataRaw } from '../config/config'
+import { envConfig } from '@/config/config'
 
 //import { getTgParams } from '../utils/getTgParams'
 
@@ -16,10 +16,10 @@ export const baseApiRequest = async <T>({
   data,
 }: BaseApiRequestOptions): Promise<T> => {
   const headers: Record<string, string> = {
-    'X-Telegram-Auth': `${initDataRaw}`,
+    'X-Telegram-Auth': `${envConfig.locationSearch}`,
   }
 
-  const apiUrl = `${API_URL}${url}`
+  const apiUrl = `${envConfig.apiUrl}/api/client${url}`
   const response = await axios({
     method,
     url: apiUrl,

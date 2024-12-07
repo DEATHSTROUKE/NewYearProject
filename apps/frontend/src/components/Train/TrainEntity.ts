@@ -48,8 +48,7 @@ export class TrainEntity extends PIXI.Application {
   readonly lightTexture: PIXI.Texture
 
   readonly activeGifts: number
-  readonly activePrizes?: string
-  readonly nonActivePrizes?: string
+  readonly prizesText: string[] | undefined
   readonly clientWidth: number
   readonly clientHeight: number
   readonly setMessage: (text: string | null) => void
@@ -62,8 +61,7 @@ export class TrainEntity extends PIXI.Application {
       lightTexture,
       snowTexture,
       activeGifts,
-      activePrizes,
-      nonActivePrizes,
+      prizesText,
       setMessage,
       ...options
     } = treeEntityOptions
@@ -73,8 +71,7 @@ export class TrainEntity extends PIXI.Application {
     this.lightTexture = lightTexture
     this.snowTexture = snowTexture
     this.activeGifts = activeGifts
-    this.activePrizes = activePrizes
-    this.nonActivePrizes = nonActivePrizes
+    this.prizesText = prizesText
     this.setMessage = setMessage
     this.clientWidth = this.screen.width
     this.clientHeight = this.screen.height
@@ -86,6 +83,7 @@ export class TrainEntity extends PIXI.Application {
     this.setupTrain()
     this.setupSnowAndLight()
     this.setupGifts()
+
     console.info(
       'main container',
       this.mainContainer.width,
@@ -332,8 +330,8 @@ export class TrainEntity extends PIXI.Application {
   }
 
   onActiveGiftClick() {
-    if (this.activePrizes !== undefined) {
-      this.setMessage(this.activePrizes)
+    if (this.activeGifts !== undefined && this.prizesText) {
+      this.setMessage(this.prizesText[this.activeGifts - 1])
     }
   }
 }

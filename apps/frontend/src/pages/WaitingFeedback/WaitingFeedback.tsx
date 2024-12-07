@@ -1,40 +1,20 @@
+import { WaitFeedbackState } from '@shared'
 import { useLocation } from 'react-router-dom'
 
 import { Feedback } from '@/components/Feedback/Feedback'
-import { Game } from '@/components/Game/Game'
-import { Message } from '@/components/Message/Message'
 import { Train } from '@/components/Train/Train'
-
-import { WaitFeedbackState } from '@/types/gameState'
 
 export const WaitingFeedback = () => {
   const location = useLocation() as { state: WaitFeedbackState }
-  const {
-    text,
-    letters,
-    wordLength,
-    feedbackQuestion,
-    afterFeedbackResponse,
-    activeGifts,
-    activePrizes,
-    nonActivePrizes,
-  } = location.state
+  const { feedbackQuestion, afterFeedbackResponse, activeGifts, prizesText } =
+    location.state
 
   return (
     <div className="main-wrapper">
       <div className="main-page__row">
-        <Train
-          activeGifts={activeGifts}
-          activePrizes={activePrizes}
-          nonActivePrizes={nonActivePrizes}
-        />
+        <Train activeGifts={activeGifts} prizesText={prizesText} />
       </div>
-      <div className="main-page__row">
-        <Message text={text} />
-      </div>
-      <div className="main-page__row">
-        <Game wordLength={wordLength} letters={letters} isEnd={true} />
-      </div>
+
       <div className="main-page__row">
         <Feedback
           text={feedbackQuestion}

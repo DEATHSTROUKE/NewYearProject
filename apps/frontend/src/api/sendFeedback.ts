@@ -16,7 +16,7 @@ export const useSendFeedback = ({
     mutationFn: (mutationData: FeedbackData) => {
       return baseApiRequest({
         method: 'POST',
-        url: '/feedback/v2',
+        url: '/sendFeedback',
         data: mutationData,
       })
     },

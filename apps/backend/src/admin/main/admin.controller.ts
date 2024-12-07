@@ -30,4 +30,10 @@ export class AdminController {
   async health() {
     return { status: 'ok' }
   }
+
+  @UseGuards(AuthGuard)
+  @Get('/check')
+  async check() {
+    return { status: 'ok' }
+  }
 }

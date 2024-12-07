@@ -691,6 +691,7 @@ h1 {
 
 .ticket__text {
   text-align: center;
+  margin: 20px 0;
 }
 
 /* Footer */
@@ -844,7 +845,7 @@ h1 {
 
 .canvas-wrapper canvas {
   width: 100%;
-  height: 100%;
+  /* height: 100%; */
 }
 .top__gift {
   z-index: 2;

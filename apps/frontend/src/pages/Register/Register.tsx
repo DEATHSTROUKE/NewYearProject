@@ -1,3 +1,4 @@
+import { ApiError, FieldsNames, RegisterFields } from '@shared'
 import { AxiosError } from 'axios'
 import { useEffect, useState } from 'react'
 
@@ -8,9 +9,6 @@ import { Input } from '@/components/Input/Input'
 import giftBottom from '@/assets/images/gift_bottom.webp'
 import giftTop from '@/assets/images/gift_top.webp'
 import Spinner from '@/assets/svgs/Spinner'
-
-import { ApiError } from '@/types/error'
-import { FieldsNames, RegisterFields } from '@/types/register'
 
 import { fieldsData } from './registerData'
 

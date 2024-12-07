@@ -6,10 +6,10 @@
  */
 
 export interface Task {
-  answer?: string
-  id?: string
-  meaning?: string
-  question?: string
-  startDate?: string
-  wordIndex?: number
+  answer: string
+  id: string
+  meaning: string
+  question: string
+  startDate: string
+  wordIndex: number
 }

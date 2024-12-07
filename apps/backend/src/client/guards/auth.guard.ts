@@ -7,7 +7,10 @@ import {
   Injectable,
   UnauthorizedException,
 } from '@nestjs/common'
+import { ApiErrorString } from '@shared'
 import { eq } from 'drizzle-orm'
+
+import { getTelegramId } from './getTelegramId'
 
 @Injectable()
 export class TgAuthGuard implements CanActivate {
@@ -16,12 +19,10 @@ export class TgAuthGuard implements CanActivate {
   async canActivate(context: ExecutionContext): Promise<boolean> {
     const request = context.switchToHttp().getRequest()
 
-    const token = request.headers['x-telegram-auth']
-    const tgUser = new URLSearchParams(token).get('user') || ''
-    const telegramId = parseInt(JSON.parse(tgUser).id || '')
+    const telegramId = getTelegramId(request.headers['x-telegram-auth'])
 
     if (!telegramId) {
-      throw new UnauthorizedException()
+      throw new UnauthorizedException(ApiErrorString.NotRegistered)
     }
 
     const user = await this.db.query.userTable.findFirst({
@@ -29,7 +30,7 @@ export class TgAuthGuard implements CanActivate {
     })
 
     if (!user) {
-      throw new UnauthorizedException()
+      throw new UnauthorizedException(ApiErrorString.NotRegistered)
     }
 
     request['userId'] = telegramId

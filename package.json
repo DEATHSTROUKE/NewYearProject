@@ -3,9 +3,9 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
-    "dev": "nx run-many -t serve",
-    "dev:front": "nx serve frontend --host",
-    "dev:admin": "nx serve admin --host",
+    "dev": "nx run-many -t serve --parallel 4",
+    "dev:front": "nx serve frontend",
+    "dev:admin": "nx serve admin",
     "dev:back": "nx serve backend",
     "dev:bot": "nx serve bot",
     "build": "nx run-many -t build",
@@ -15,7 +15,8 @@
     "db:generate": "drizzle-kit generate --config apps/backend/drizzle.config.ts",
     "db:migrate": "drizzle-kit migrate --config apps/backend/drizzle.config.ts",
     "db:seed": "TS_NODE_PROJECT=apps/backend/tsconfig.app.json tsx -r tsconfig-paths/register apps/backend/src/drizzle/seed/seed.ts",
-    "admin:orval": "orval --config apps/admin/orval.config.ts"
+    "admin:orval": "orval --config apps/admin/orval.config.ts",
+    "test:word": "TS_NODE_PROJECT=apps/backend/tsconfig.app.json tsx -r tsconfig-paths/register apps/backend/src/client/utils/checkWord.ts"
   },
   "private": true,
   "dependencies": {
@@ -36,8 +37,11 @@
     "@trivago/prettier-plugin-sort-imports": "^4.3.0",
     "axios": "^1.7.7",
     "bcrypt": "^5.1.1",
+    "class-transformer": "^0.5.1",
+    "class-validator": "^0.14.1",
     "classnames": "^2.5.1",
     "clsx": "^2.1.1",
+    "dayjs": "^1.11.13",
     "dotenv": "^16.4.5",
     "drizzle-kit": "^0.28.1",
     "drizzle-orm": "^0.36.4",

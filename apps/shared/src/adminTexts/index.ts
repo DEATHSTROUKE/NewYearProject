@@ -30,4 +30,7 @@ export const AdminTextsTitleHumanReadable: Record<AdminTextsTitle, string> = {
   textWithLink: 'Текст под шаром на странице с розыгрышем призов',
 }
 
-export const DATETIME_TEXTS = ['waitEndLottery']
+export const DATETIME_TEXTS: AdminTextsTitle[] = [
+  'waitEndLottery',
+  'feedbackQuestion',
+]

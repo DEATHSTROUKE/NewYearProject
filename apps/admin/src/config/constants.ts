@@ -3,12 +3,3 @@ export const envConfig = {
   locationSearch: '',
   isDev: import.meta.env.DEV,
 }
-
-export const BUTTONS_VALUES = {
-  buttons: {
-    text: 'Кнопки',
-  },
-  textfield: {
-    text: 'Поле ввода',
-  },
-}

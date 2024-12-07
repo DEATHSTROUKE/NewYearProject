@@ -4,15 +4,19 @@
  * New Year Game API
  * OpenAPI spec version: 1.0.0
  */
-import type { UserDetailedAttemptsItem } from './userDetailedAttemptsItem'
-import type { UserDetailedReviewsItem } from './userDetailedReviewsItem'
+import type { UserDetailedAnswersItem } from './userDetailedAnswersItem'
+import type { UserDetailedReviews } from './userDetailedReviews'
 
 export interface UserDetailed {
-  attempts?: UserDetailedAttemptsItem[]
-  correctAttempts?: number
+  answers?: UserDetailedAnswersItem[]
+  division?: string
+  email?: string
   id?: number
-  isLotteryUser?: boolean
+  lotteryNumber?: number
+  middleName?: string
   name?: string
   phone?: string
-  reviews?: UserDetailedReviewsItem[]
+  place?: string
+  reviews?: UserDetailedReviews
+  surname?: string
 }

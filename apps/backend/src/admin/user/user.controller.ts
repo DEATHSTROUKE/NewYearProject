@@ -20,14 +20,15 @@ export class UserController {
 
   @Get(':id')
   findOne(@Param('id') id: string): Promise<UserDetailed> {
-    return this.userService.findOne(+id)
+    return this.userService.findOne(parseInt(id))
   }
 
   @Patch(':id/changeIsLotteryUser')
-  update(
+  async update(
     @Param('id') id: string,
     @Body() { isLotteryUser }: PostApiAdminUserIdChangeIsLotteryUserBody,
-  ): Promise<void> {
-    return this.userService.update(+id, { isLotteryUser })
+  ) {
+    await this.userService.update(parseInt(id), { isLotteryUser })
+    return { status: 'ok' }
   }
 }

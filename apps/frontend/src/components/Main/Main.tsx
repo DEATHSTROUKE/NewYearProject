@@ -15,11 +15,13 @@ export const Main = () => {
   useEffect(() => {
     if (isError && error instanceof AxiosError) {
       const err = error as AxiosError<ApiError>
-      if (err.response?.data.exception === ApiErrorString.NotRegistered) {
+      if (err.response?.data.message === ApiErrorString.NotRegistered) {
         navigate('/register')
       }
       return
     }
+
+    // return navigate('/testPage')
 
     if (data) {
       switch (data.gameState) {

@@ -1,0 +1,269 @@
+{
+  "openapi": "3.0.0",
+  "servers": [
+    {
+      "url": "https://localhost:3000"
+    }
+  ],
+  "info": {
+    "title": "New Year Game API",
+    "version": "1.0.0"
+  },
+  "paths": {
+    "/api/client/getState": {
+      "get": {
+        "tags": ["Client"],
+        "security": [{ "telegramAuth": [] }],
+        "summary": "Get current game state",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GameState"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/client/new_attempt": {
+      "post": {
+        "tags": ["Client"],
+        "security": [{ "telegramAuth": [] }],
+        "summary": "Submit new word attempt",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AttemptRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/client/register": {
+      "post": {
+        "tags": ["Client"],
+        "security": [{ "telegramAuth": [] }],
+        "summary": "Register new user",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RegisterRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/client/sendFeedback": {
+      "post": {
+        "tags": ["Client"],
+        "security": [{ "telegramAuth": [] }],
+        "summary": "Send feedback",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/FeedbackRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "LetterState": {
+        "type": "string",
+        "enum": ["grey", "green", "yellow", ""]
+      },
+      "Letter": {
+        "type": "object",
+        "properties": {
+          "letter": { "type": "string" },
+          "state": { "$ref": "#/components/schemas/LetterState" }
+        },
+        "required": ["letter", "state"]
+      },
+      "Gifts": {
+        "type": "object",
+        "properties": {
+          "activePrizes": { "type": "string" },
+          "nonActivePrizes": { "type": "string" },
+          "activeGifts": { "type": "number", "enum": [3] }
+        },
+        "required": ["activePrizes", "nonActivePrizes", "activeGifts"]
+      },
+      "GameState": {
+        "oneOf": [
+          {
+            "type": "object",
+            "properties": {
+              "gameState": { "type": "string", "enum": ["beforeGame"] },
+              "text": { "type": "string" }
+            },
+            "required": ["gameState", "text"]
+          },
+          {
+            "type": "object",
+            "properties": {
+              "gameState": { "type": "string", "enum": ["inGame"] },
+              "text": { "type": "string" },
+              "letters": {
+                "type": "array",
+                "items": { "$ref": "#/components/schemas/Letter" }
+              },
+              "wordLength": { "type": "number" },
+              "currentLine": { "type": "number" }
+            },
+            "required": [
+              "gameState",
+              "text",
+              "letters",
+              "wordLength",
+              "currentLine"
+            ],
+            "allOf": [{ "$ref": "#/components/schemas/Gifts" }]
+          },
+          {
+            "type": "object",
+            "properties": {
+              "gameState": { "type": "string", "enum": ["waitFeedback"] },
+              "text": { "type": "string" },
+              "letters": {
+                "type": "array",
+                "items": { "$ref": "#/components/schemas/Letter" }
+              },
+              "wordLength": { "type": "number" },
+              "feedbackQuestion": { "type": "string" },
+              "afterFeedbackResponse": { "type": "string" }
+            },
+            "required": [
+              "gameState",
+              "text",
+              "letters",
+              "wordLength",
+              "feedbackQuestion",
+              "afterFeedbackResponse"
+            ],
+            "allOf": [{ "$ref": "#/components/schemas/Gifts" }]
+          },
+          {
+            "type": "object",
+            "properties": {
+              "gameState": { "type": "string", "enum": ["waitNextGame"] },
+              "text": { "type": "string" }
+            },
+            "required": ["gameState", "text"],
+            "allOf": [{ "$ref": "#/components/schemas/Gifts" }]
+          },
+          {
+            "type": "object",
+            "properties": {
+              "gameState": { "type": "string", "enum": ["waitEndLottery"] },
+              "text": { "type": "string" },
+              "lotteryTime": {
+                "type": "string",
+                "nullable": true
+              },
+              "ticketNumber": { "type": "number" },
+              "textWithLink": { "type": "string" }
+            },
+            "required": [
+              "gameState",
+              "text",
+              "lotteryTime",
+              "ticketNumber",
+              "textWithLink"
+            ],
+            "allOf": [{ "$ref": "#/components/schemas/Gifts" }]
+          },
+          {
+            "type": "object",
+            "properties": {
+              "gameState": { "type": "string", "enum": ["afterLottery"] },
+              "text": { "type": "string" },
+              "activeGifts": { "type": "number" }
+            },
+            "required": ["gameState", "text", "activeGifts"]
+          }
+        ]
+      },
+      "AttemptRequest": {
+        "type": "object",
+        "properties": {
+          "word": { "type": "string" }
+        },
+        "required": ["word"]
+      },
+      "RegisterRequest": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "surname": { "type": "string" },
+          "middleName": { "type": "string" },
+          "email": { "type": "string" },
+          "phone": { "type": "string" },
+          "place": { "type": "string" },
+          "division": { "type": "string" }
+        },
+        "required": [
+          "name",
+          "surname",
+          "middleName",
+          "email",
+          "phone",
+          "place",
+          "division"
+        ]
+      },
+      "FeedbackRequest": {
+        "type": "object",
+        "properties": {
+          "feedback": { "type": "string" }
+        },
+        "required": ["feedback"]
+      },
+      "SignInRequest": {
+        "type": "object",
+        "properties": {
+          "login": { "type": "string" },
+          "password": { "type": "string" }
+        },
+        "required": ["login", "password"]
+      }
+    },
+    "securitySchemes": {
+      "telegramAuth": {
+        "type": "apiKey",
+        "in": "header",
+        "name": "X-Telegram-Auth"
+      }
+    }
+  }
+}

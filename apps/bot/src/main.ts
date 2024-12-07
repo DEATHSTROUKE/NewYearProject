@@ -1,14 +1,13 @@
-import dotenv from 'dotenv'
 import path from 'path'
 import { InlineKeyboardBuilder, MediaSourceType, Telegram } from 'puregram'
 
-dotenv.config()
+import { envConfig } from './config/constants'
 
-const telegram = Telegram.fromToken(process.env.BOT_TOKEN)
+const telegram = Telegram.fromToken(envConfig.botToken)
 
 const keyboard = new InlineKeyboardBuilder().webAppButton({
   text: 'Играть',
-  url: 'https://google.com',
+  url: envConfig.appLink,
 })
 
 telegram.updates.on('message', context => {
@@ -18,7 +17,7 @@ telegram.updates.on('message', context => {
       value: path.resolve(__dirname, 'assets/image.jpg'),
     },
     {
-      caption: 'Собери все подарки и выиграй приз в лотерею',
+      caption: envConfig.imageCaption,
       parse_mode: 'Markdown',
       reply_markup: keyboard,
     },
@@ -26,8 +25,3 @@ telegram.updates.on('message', context => {
 })
 
 telegram.updates.startPolling()
-
-// telegram.api.sendMessage({
-//   chat_id: 405797658,
-//   text: 'Hello',
-// })

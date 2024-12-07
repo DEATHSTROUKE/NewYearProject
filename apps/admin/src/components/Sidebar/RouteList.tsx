@@ -7,12 +7,10 @@ import {
   Typography,
 } from '@mui/joy'
 import {
-  BellIcon,
   ChecklistIcon,
-  GearIcon,
+  DownloadIcon,
+  PencilIcon,
   PeopleIcon,
-  PersonAddIcon,
-  VerifiedIcon,
 } from '@primer/octicons-react'
 import { Link, useLocation } from 'react-router-dom'
 
@@ -20,34 +18,24 @@ import { ROUTES } from '@/config/routes'
 
 const routes = [
   {
-    path: ROUTES.Admins,
-    text: 'Администраторы',
-    icon: <PersonAddIcon size={16} />,
-  },
-  {
-    path: ROUTES.TaskControl,
-    text: 'Управление заданиями',
-    icon: <ChecklistIcon size={16} />,
-  },
-  {
-    path: ROUTES.BotNotifications,
-    text: 'Уведомления в боте',
-    icon: <BellIcon size={16} />,
-  },
-  {
-    path: ROUTES.Users,
-    text: 'Участники',
+    path: ROUTES.Dashboard,
+    text: 'Все пользователи',
     icon: <PeopleIcon size={16} />,
   },
   {
-    path: ROUTES.Achievements,
-    text: 'Ачивки',
-    icon: <VerifiedIcon size={16} />,
+    path: ROUTES.AdminTexts,
+    text: 'Тексты',
+    icon: <PencilIcon size={16} />,
   },
   {
-    path: ROUTES.Settings,
-    text: 'Настройки',
-    icon: <GearIcon size={16} />,
+    path: ROUTES.Tasks,
+    text: 'Задания',
+    icon: <ChecklistIcon size={16} />,
+  },
+  {
+    path: ROUTES.Excel,
+    text: 'Выгрузка отзывов и лоттереи',
+    icon: <DownloadIcon size={16} />,
   },
 ]
 
@@ -72,10 +60,7 @@ export const RouteList = () => {
         }}
       >
         {routes.map((route, idx) => (
-          <Link
-            key={idx}
-            to={route.path}
-          >
+          <Link key={idx} to={route.path}>
             <ListItem
               sx={
                 pathname.startsWith(route.path)

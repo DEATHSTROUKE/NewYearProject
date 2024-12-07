@@ -3,27 +3,18 @@ import { FC } from 'react'
 import { TrainCanvas } from './TrainCanvas'
 
 type TrainProps = {
-  activeGifts?: number
-  activePrizes?: string
-  nonActivePrizes?: string
+  activeGifts: number
+  prizesText?: string[]
 }
 
-export const Train: FC<TrainProps> = ({
-  activeGifts,
-  activePrizes,
-  nonActivePrizes,
-}) => {
+export const Train: FC<TrainProps> = ({ activeGifts, prizesText }) => {
   return activeGifts === undefined ? (
     <div className="main-image__container">
       <div className="main-page__title">
-        <h1>Наряди свою ёлочку Благополучия</h1>
+        <h1>Экспресс Благополучие</h1>
       </div>
     </div>
   ) : (
-    <TrainCanvas
-      activeGifts={activeGifts}
-      activePrizes={activePrizes}
-      nonActivePrizes={nonActivePrizes}
-    />
+    <TrainCanvas activeGifts={activeGifts} prizesText={prizesText} />
   )
 }

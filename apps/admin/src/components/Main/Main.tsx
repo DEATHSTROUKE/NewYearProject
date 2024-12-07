@@ -1,9 +1,19 @@
-import { Outlet } from 'react-router-dom'
+import { adminApi } from '@/api'
+import { AxiosError } from 'axios'
+import { useEffect } from 'react'
+import { Outlet, useNavigate } from 'react-router-dom'
 
-import { useGetExcursions } from '@/api/excursion'
+import { ROUTES } from '@/config/routes'
 
 export const Main = () => {
-  useGetExcursions()
+  const { isError, error } = adminApi.useGetApiAdminCheck()
+  const navigate = useNavigate()
+
+  useEffect(() => {
+    if (error instanceof AxiosError && error.status === 401) {
+      navigate(ROUTES.Login)
+    }
+  }, [error, isError])
 
   return <Outlet />
 }

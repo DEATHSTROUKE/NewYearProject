@@ -1,3 +1,4 @@
+import { Letter } from '@shared'
 import React, { useLayoutEffect } from 'react'
 
 import { Feedback } from '@/components/Feedback/Feedback'
@@ -8,13 +9,10 @@ import { Meaning } from '@/components/Meaning/Meaning'
 import { Message } from '@/components/Message/Message'
 import { Rules } from '@/components/Rules/Rules'
 import { Train } from '@/components/Train/Train'
-import { Tree } from '@/components/Tree/Tree'
 
 import { useMainStore } from '@/store/mainStore'
 
-import { Letter } from '@/types/game'
-
-const TestPage = () => {
+function TestPage() {
   const setTimer = useMainStore(state => state.setTimer)
 
   useLayoutEffect(() => {
@@ -42,11 +40,7 @@ const TestPage = () => {
   return (
     <div className="main-wrapper">
       <div className="main-page__row">
-        <Train
-          activeGifts={5}
-          activePrizes="Активный подарок"
-          nonActivePrizes="Неактивный подарок"
-        />
+        <Train activeGifts={5} prizesText={['1', '2', '3', '4', '5']} />
       </div>
       <div className="main-page__row">
         <Message text="Новогодняя викторина начнется 18 декабря в 10.00" />

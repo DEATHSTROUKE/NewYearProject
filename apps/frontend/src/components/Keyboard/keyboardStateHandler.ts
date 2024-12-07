@@ -1,4 +1,4 @@
-import { Letter, LetterState, TKeyboardLetter } from '@/types/game'
+import { Letter, LetterState, TKeyboardLetter } from '@shared'
 
 export const setKeyboardState = (
   keyboardData: TKeyboardLetter[][],

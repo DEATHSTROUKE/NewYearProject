@@ -1,0 +1,1 @@
+ALTER TABLE "attempts" ADD COLUMN "answer" varchar(255) NOT NULL;

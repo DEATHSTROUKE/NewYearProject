@@ -6,8 +6,10 @@
  */
 
 export interface UpdateTextRequest {
-  endDate: string
-  startDate: string
-  text: string
-  title: string
+  /** @nullable */
+  endDate?: string | null
+  /** @nullable */
+  startDate?: string | null
+  text?: string
+  title?: string
 }

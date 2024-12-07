@@ -3,18 +3,13 @@ import { SignOutIcon } from '@primer/octicons-react'
 import { memo } from 'react'
 import { useNavigate } from 'react-router-dom'
 
-import { useCheckLogin } from '@/api/login'
-
 import { ROUTES } from '@/config/routes'
 
 import { clearAccessToken } from '@/utils/login'
 
-import { Logo } from '@/assets/svgs/Logo'
-
 import { RouteList } from './RouteList'
 
 export const Sidebar = memo(() => {
-  const { loginData } = useCheckLogin()
   const navigate = useNavigate()
 
   return (
@@ -35,10 +30,7 @@ export const Sidebar = memo(() => {
         borderColor: 'divider',
       }}
     >
-      <Stack
-        direction={'column'}
-        height={'100%'}
-      >
+      <Stack direction={'column'} height={'100%'}>
         <Box
           sx={{
             display: 'flex',
@@ -47,19 +39,27 @@ export const Sidebar = memo(() => {
             flexGrow: 1,
           }}
         >
-          <Box sx={{ mb: { xs: '50px', lg: '70px' } }}>
-            <Logo />
+          <Box
+            sx={{
+              mb: { xs: '50px', lg: '70px' },
+              fontWeight: 'bold',
+              fontSize: '40px',
+              background: '#e12c31dd',
+              borderRadius: '15px',
+              padding: '10px',
+              color: 'white',
+              textAlign: 'center',
+            }}
+          >
+            БЛАГО 2025
           </Box>
           <RouteList />
         </Box>
         <Divider />
         <Box sx={{ display: 'flex', gap: 1, alignItems: 'center', py: '5px' }}>
           <Box sx={{ minWidth: 0, flex: 1 }}>
-            <Typography
-              fontWeight={'bold'}
-              fontSize={'16px'}
-            >
-              {loginData?.mail}
+            <Typography fontWeight={'bold'} fontSize={'16px'}>
+              admin
             </Typography>
           </Box>
           <IconButton

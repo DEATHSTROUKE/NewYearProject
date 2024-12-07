@@ -4,8 +4,8 @@ import {
   Delete,
   Get,
   Param,
+  Patch,
   Post,
-  Put,
   UseGuards,
 } from '@nestjs/common'
 
@@ -28,7 +28,7 @@ export class TaskController {
     return await this.taskService.create(task)
   }
 
-  @Put(':id')
+  @Patch(':id')
   async update(@Param('id') id: string, @Body() task: UpdateTaskDto) {
     await this.taskService.update(id, task)
     return { status: 'ok' }

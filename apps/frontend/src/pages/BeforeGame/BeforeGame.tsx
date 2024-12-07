@@ -1,11 +1,10 @@
+import { BeforeGameState } from '@shared'
 import { useLocation } from 'react-router-dom'
 
 import { HowToPlay } from '@/components/HowToPlay/HowToPlay'
 import { Message } from '@/components/Message/Message'
 import { Rules } from '@/components/Rules/Rules'
 import { Train } from '@/components/Train/Train'
-
-import { BeforeGameState } from '@/types/gameState'
 
 export const BeforeGame = () => {
   const location = useLocation() as { state: BeforeGameState }
@@ -14,11 +13,13 @@ export const BeforeGame = () => {
   return (
     <div className="main-wrapper">
       <div className="main-page__row">
-        <Train />
+        <Train activeGifts={0} />
       </div>
-      <div className="main-page__row">
-        <Message text={text} />
-      </div>
+      {text && (
+        <div className="main-page__row">
+          <Message text={text} />
+        </div>
+      )}
 
       <div className="main-page__row">
         <a

@@ -6,11 +6,10 @@
  */
 
 export interface UserBasic {
-  correctAttempts?: number
-  id?: number
-  isLotteryUser?: boolean
-  middleName?: string
-  name?: string
-  phone?: string
-  surname?: string
+  correctAttempts: number
+  id: number
+  middleName: string
+  name: string
+  phone: string
+  surname: string
 }
