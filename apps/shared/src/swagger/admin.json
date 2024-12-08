@@ -282,7 +282,7 @@
           "200": {
             "description": "Success",
             "content": {
-              "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet": {
+              "text/csv": {
                 "schema": {
                   "type": "string",
                   "format": "binary"
@@ -302,7 +302,7 @@
           "200": {
             "description": "Success",
             "content": {
-              "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet": {
+              "text/csv": {
                 "schema": {
                   "type": "string",
                   "format": "binary"
@@ -435,7 +435,8 @@
           "phone": { "type": "string" },
           "place": { "type": "string" },
           "division": { "type": "string" },
-          "lotteryNumber": { "type": "integer" },
+          "lotteryNumber": { "type": "integer", "nullable": true },
+          "isLotteryUser": { "type": "boolean" },
           "answers": {
             "type": "array",
             "items": {
@@ -451,10 +452,12 @@
                       "id": { "type": "string" },
                       "word": { "type": "string" },
                       "createdAt": { "type": "string", "format": "date-time" }
-                    }
+                    },
+                    "required": ["id", "word", "createdAt"]
                   }
                 }
-              }
+              },
+              "required": ["id", "correctWord", "attempts"]
             }
           },
           "reviews": {
@@ -462,9 +465,22 @@
             "properties": {
               "text": { "type": "string" },
               "createdAt": { "type": "string", "format": "date-time" }
-            }
+            },
+            "required": ["text", "createdAt"]
           }
-        }
+        },
+        "required": [
+          "id",
+          "name",
+          "surname",
+          "middleName",
+          "email",
+          "phone",
+          "place",
+          "division",
+          "lotteryNumber",
+          "answers"
+        ]
       }
     },
     "securitySchemes": {

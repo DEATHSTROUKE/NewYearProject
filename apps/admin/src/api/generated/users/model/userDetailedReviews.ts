@@ -6,6 +6,6 @@
  */
 
 export type UserDetailedReviews = {
-  createdAt?: string
-  text?: string
+  createdAt: string
+  text: string
 }

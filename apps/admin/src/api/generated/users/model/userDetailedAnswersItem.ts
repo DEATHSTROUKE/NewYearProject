@@ -7,7 +7,7 @@
 import type { UserDetailedAnswersItemAttemptsItem } from './userDetailedAnswersItemAttemptsItem'
 
 export type UserDetailedAnswersItem = {
-  attempts?: UserDetailedAnswersItemAttemptsItem[]
-  correctWord?: string
-  id?: string
+  attempts: UserDetailedAnswersItemAttemptsItem[]
+  correctWord: string
+  id: string
 }

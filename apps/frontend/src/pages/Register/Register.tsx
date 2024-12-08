@@ -1,4 +1,4 @@
-import { ApiError, FieldsNames, RegisterFields } from '@shared'
+import { ApiError, FieldsNames, TRegisterFields } from '@shared'
 import { AxiosError } from 'axios'
 import { useEffect, useState } from 'react'
 
@@ -12,7 +12,7 @@ import Spinner from '@/assets/svgs/Spinner'
 
 import { fieldsData } from './registerData'
 
-const initialFields: RegisterFields = {
+const initialFields: TRegisterFields = {
   name: '',
   surname: '',
   middleName: '',
@@ -23,7 +23,7 @@ const initialFields: RegisterFields = {
 }
 
 export const Register = () => {
-  const [fields, setFields] = useState<RegisterFields>(initialFields)
+  const [fields, setFields] = useState<TRegisterFields>(initialFields)
   const [isAgreePolicy, setIsAgreePolicy] = useState(false)
   const [error, setError] = useState<string | null>(null)
 

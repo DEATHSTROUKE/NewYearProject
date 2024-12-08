@@ -13,7 +13,7 @@ export const BeforeGame = () => {
   return (
     <div className="main-wrapper">
       <div className="main-page__row">
-        <Train activeGifts={0} />
+        <Train activeGifts={0} isBigTrain />
       </div>
       {text && (
         <div className="main-page__row">

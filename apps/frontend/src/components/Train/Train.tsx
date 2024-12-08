@@ -5,9 +5,15 @@ import { TrainCanvas } from './TrainCanvas'
 type TrainProps = {
   activeGifts: number
   prizesText?: string[]
+  isBigTrain?: boolean
 }
 
-export const Train: FC<TrainProps> = ({ activeGifts, prizesText }) => {
+export const Train: FC<TrainProps> = ({
+  activeGifts,
+  prizesText,
+  isBigTrain,
+}) => {
+  console.info('TRAIN')
   return activeGifts === undefined ? (
     <div className="main-image__container">
       <div className="main-page__title">
@@ -15,6 +21,10 @@ export const Train: FC<TrainProps> = ({ activeGifts, prizesText }) => {
       </div>
     </div>
   ) : (
-    <TrainCanvas activeGifts={activeGifts} prizesText={prizesText} />
+    <TrainCanvas
+      activeGifts={activeGifts}
+      prizesText={prizesText}
+      isBigTrain={isBigTrain}
+    />
   )
 }

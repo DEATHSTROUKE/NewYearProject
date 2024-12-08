@@ -8,15 +8,17 @@ import type { UserDetailedAnswersItem } from './userDetailedAnswersItem'
 import type { UserDetailedReviews } from './userDetailedReviews'
 
 export interface UserDetailed {
-  answers?: UserDetailedAnswersItem[]
-  division?: string
-  email?: string
-  id?: number
-  lotteryNumber?: number
-  middleName?: string
-  name?: string
-  phone?: string
-  place?: string
+  answers: UserDetailedAnswersItem[]
+  division: string
+  email: string
+  id: number
+  isLotteryUser?: boolean
+  /** @nullable */
+  lotteryNumber: number | null
+  middleName: string
+  name: string
+  phone: string
+  place: string
   reviews?: UserDetailedReviews
-  surname?: string
+  surname: string
 }

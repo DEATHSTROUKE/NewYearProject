@@ -1,4 +1,4 @@
-import { FeedbackData } from '@shared'
+import { TFeedbackData } from '@shared'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 
 import { baseApiRequest } from './baseApiRequest'
@@ -13,7 +13,7 @@ export const useSendFeedback = ({
   const client = useQueryClient()
   return useMutation({
     mutationKey: ['feedback'],
-    mutationFn: (mutationData: FeedbackData) => {
+    mutationFn: (mutationData: TFeedbackData) => {
       return baseApiRequest({
         method: 'POST',
         url: '/sendFeedback',

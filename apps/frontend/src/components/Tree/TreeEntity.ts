@@ -1,6 +1,6 @@
 import * as PIXI from 'pixi.js'
 
-import { TreeEntityOptions } from '../../types/pixi'
+import { TreeEntityOptions } from '../Train/pixi/pixi'
 
 enum Textures {
   ShadowGift = 'ShadowGift.png',

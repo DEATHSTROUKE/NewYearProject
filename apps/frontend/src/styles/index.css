@@ -83,9 +83,6 @@ h3 {
 .header__right .header__burger {
   display: none;
 }
-.header__right .header__help {
-  margin-right: 25px;
-}
 .header__right .header__help a {
   font-size: 1.2rem;
 }

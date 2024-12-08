@@ -17,27 +17,28 @@ export type UserDetailedReviews = {
 }
 
 export type UserDetailedAnswersItemAttemptsItem = {
-  createdAt?: string
-  id?: string
-  word?: string
+  createdAt: string
+  id: string
+  word: string
 }
 
 export type UserDetailedAnswersItem = {
-  attempts?: UserDetailedAnswersItemAttemptsItem[]
-  correctWord?: string
-  id?: string
+  attempts: UserDetailedAnswersItemAttemptsItem[]
+  correctWord: string
+  id: string
 }
 
 export interface UserDetailed {
-  answers?: UserDetailedAnswersItem[]
-  division?: string
-  email?: string
-  id?: number
-  lotteryNumber?: number
-  middleName?: string
-  name?: string
-  phone?: string
-  place?: string
+  answers: UserDetailedAnswersItem[]
+  division: string
+  email: string
+  id: number
+  lotteryNumber: number | null
+  middleName: string
+  name: string
+  phone: string
+  place: string
   reviews?: UserDetailedReviews
-  surname?: string
+  surname: string
+  isLotteryUser: boolean
 }

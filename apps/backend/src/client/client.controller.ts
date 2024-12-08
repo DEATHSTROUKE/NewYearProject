@@ -1,10 +1,11 @@
 import { Body, Controller, Get, Post, Req, UseGuards } from '@nestjs/common'
-import { FeedbackData, GetState, NewAttemptData, RegisterFields } from '@shared'
+import { GetState, NewAttemptData } from '@shared'
 import { Request } from 'express'
 
 import { ClientService } from './client.service'
 import { TgAuthGuard } from './guards/auth.guard'
 import { TgRegisterGuard } from './guards/register.guard'
+import { FeedbackData, RegisterFields } from './types/client.dto'
 
 @Controller('client')
 export class ClientController {

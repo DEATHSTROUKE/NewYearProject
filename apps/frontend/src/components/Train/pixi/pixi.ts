@@ -10,11 +10,11 @@ export interface TreeEntityOptions extends Partial<PIXI.IApplicationOptions> {
 }
 
 export interface TrainEntityOptions extends Partial<PIXI.IApplicationOptions> {
-  // textures: PIXI.Spritesheet
   trainTexture: PIXI.Texture
   lightTexture: PIXI.Texture
   snowTexture: PIXI.Texture
   activeGifts: number
   prizesText?: string[]
+  isBigTrain?: boolean
   setMessage: (text: string | null) => void
 }

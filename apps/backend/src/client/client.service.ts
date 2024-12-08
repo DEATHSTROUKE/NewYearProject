@@ -4,12 +4,10 @@ import {
   AfterLotteryState,
   ApiErrorString,
   BeforeGameState,
-  FeedbackData,
   GetState,
   Gifts,
   InGameState,
   NewAttemptData,
-  RegisterFields,
   WaitEndLotteryState,
   WaitFeedbackState,
   WaitNextGameState,
@@ -18,6 +16,7 @@ import dayjs from 'dayjs'
 import { and, count, desc, eq, inArray, lt } from 'drizzle-orm'
 
 import * as schema from '../drizzle/schema/schema'
+import { FeedbackData, RegisterFields } from './types/client.dto'
 import { checkWord } from './utils/checkWord'
 
 @Injectable()
@@ -85,13 +84,14 @@ export class ClientService {
 
     const doneFeedback = await this.isDoneFeedback(userId)
     if (
-      dayjs().isBetween(
-        lastWordEndDate.subtract(24, 'hour'),
-        feedbackEntity?.endDate,
-      ) &&
-      doneCurWord &&
       !doneFeedback &&
-      wordIndex === 4
+      ((dayjs().isBetween(
+        lastWordEndDate.subtract(24, 'hour'),
+        lastWordEndDate,
+      ) &&
+        doneCurWord) ||
+        (dayjs().isBetween(lastWordEndDate, feedbackEntity?.endDate) &&
+          doneCurWord))
     ) {
       console.info('waitFeedback')
       return this.getWaitFeedbackState(userId)
@@ -333,6 +333,20 @@ export class ClientService {
     const correctWord = await this.getCurrentWord()
     if (!correctWord) {
       throw new BadRequestException(ApiErrorString.BadRequest)
+    }
+
+    const countAttempts = await this.db
+      .select({ count: count() })
+      .from(schema.attemptsTable)
+      .where(
+        and(
+          eq(schema.attemptsTable.userId, userId),
+          eq(schema.attemptsTable.wordId, correctWord.id),
+        ),
+      )
+
+    if (countAttempts[0].count >= 5) {
+      throw new BadRequestException(ApiErrorString.NotValid)
     }
 
     const isCorrect = word.toLowerCase() === correctWord.answer.toLowerCase()

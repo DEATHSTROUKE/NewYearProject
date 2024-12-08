@@ -4,12 +4,22 @@ import { Box, Button, Divider, Stack, Typography } from '@mui/joy'
 import { MainLayout } from '@/components/Layouts/MainLayout'
 
 export const Component = () => {
-  const onDownloadReviews = () => {
-    adminApi.getApiAdminExcelAllReviews()
+  const downloadFile = (blob: Blob, filename: string) => {
+    const url = window.URL.createObjectURL(blob)
+    const link = document.createElement('a')
+    link.href = url
+    link.download = filename
+    link.click()
   }
 
-  const onDownloadLotteryNumbers = () => {
-    adminApi.getApiAdminExcelLotteryNumbers()
+  const onDownloadReviews = async () => {
+    const data = await adminApi.getApiAdminExcelAllReviews()
+    downloadFile(data, 'reviews.csv')
+  }
+
+  const onDownloadLotteryNumbers = async () => {
+    const data = await adminApi.getApiAdminExcelLotteryNumbers()
+    downloadFile(data, 'lotteryNumbers.csv')
   }
 
   return (

@@ -1,18 +1,20 @@
 import * as PIXI from 'pixi.js'
 import { FC, useCallback, useEffect, useRef, useState } from 'react'
 
-import { TrainEntity } from './TrainEntity'
 import { TrainMessage } from './TrainMessage'
+import { TrainEntity } from './pixi/TrainEntity'
 import { useLoadAsset } from './useLoadAsset'
 
 type TrainProps = {
   activeGifts: number
   prizesText?: string[]
+  isBigTrain?: boolean
 }
 
 export const TrainCanvas: FC<TrainProps> = ({
   activeGifts,
   prizesText,
+  isBigTrain,
 }: TrainProps) => {
   const containerRef = useRef<HTMLDivElement>(null)
   const [app, setApp] = useState<TrainEntity | null>(null)
@@ -46,6 +48,7 @@ export const TrainCanvas: FC<TrainProps> = ({
       snowTexture: snowImage,
       activeGifts,
       prizesText,
+      isBigTrain,
       setMessage: setMessageText,
       width: window.innerWidth,
       height: window.innerWidth,
