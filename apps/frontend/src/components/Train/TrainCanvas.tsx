@@ -17,7 +17,7 @@ export const TrainCanvas: FC<TrainProps> = ({
   isBigTrain,
 }: TrainProps) => {
   const containerRef = useRef<HTMLDivElement>(null)
-  const [app, setApp] = useState<TrainEntity | null>(null)
+  const [_app, setApp] = useState<TrainEntity | null>(null)
   const [messageText, setMessageText] = useState<string | null>(null)
 
   //const TreePath = `/Train${activeGifts}.png`

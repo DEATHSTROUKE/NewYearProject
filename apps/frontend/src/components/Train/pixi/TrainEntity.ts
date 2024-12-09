@@ -65,21 +65,18 @@ export class TrainEntity extends PIXI.Application {
     )
     console.info('scale', scale)
 
-    // this.mainContainer.pivot.set(window.innerWidth / 2, window.innerHeight / 2)
     this.mainContainer.scale.set(scale)
 
-    this.mainContainer.pivot.set(
-      this.mainContainer.width / 2,
-      this.mainContainer.height / 2,
-    )
-
-    //this.mainContainer.x = this.mainContainer.width / 14 //70
-    //this.mainContainer.y = this.mainContainer.height / 5.35 //110
-    this.mainContainer.x = 0
+    if (this.isBigTrain) {
+      this.mainContainer.x = -this.mainContainer.width / 8
+      this.mainContainer.y = 0
+    } else {
+      this.mainContainer.x = -30
+      this.mainContainer.y = 0
+    }
 
     this.mainContainer.sortableChildren = true
     this.mainContainer.interactive = true
-    this.mainContainer.interactiveChildren = true
 
     console.info(
       'main container 2',
@@ -109,7 +106,7 @@ export class TrainEntity extends PIXI.Application {
   setupSnowAndLight() {
     const snowSprite = new PIXI.Sprite(this.snowTexture)
     snowSprite.scale.set(1.003)
-    snowSprite.x = 169.03
+    snowSprite.x = 169
     snowSprite.y = 48
     snowSprite.zIndex = 6
     snowSprite.interactive = true
@@ -121,9 +118,15 @@ export class TrainEntity extends PIXI.Application {
     const lightSprite = new PIXI.Sprite(this.lightTexture)
     lightSprite.scale.set(3)
     lightSprite.x = 200
+    if (this.isBigTrain) {
+      lightSprite.alpha = 0.4
+      lightSprite.x = 250
+    } else {
+      lightSprite.x = 200
+      lightSprite.alpha = 0.8
+    }
     lightSprite.y = -20
     lightSprite.zIndex = 0
-    lightSprite.alpha = 0.8
     lightSprite.interactive = true
 
     lightSprite.hitArea = new PIXI.Polygon([])
@@ -135,8 +138,8 @@ export class TrainEntity extends PIXI.Application {
     console.info('setup train')
     const trainSprite = new PIXI.Sprite(this.trainTexture)
     trainSprite.scale.set(1.32)
-    trainSprite.x = 304.3
-    trainSprite.y = 90.67
+    trainSprite.x = 304
+    trainSprite.y = 91
     trainSprite.zIndex = 4
     trainSprite.interactive = true
 
@@ -171,11 +174,7 @@ export class TrainEntity extends PIXI.Application {
     giftSprite.zIndex = zIndex
     giftSprite.interactive = true
 
-    console.info({ giftSprite, textureName })
-
     giftSprite.on('pointerdown', e => {
-      console.info(e)
-      console.info({ giftSprite })
       e.stopPropagation()
       this.onActiveGiftClick(index)
     })

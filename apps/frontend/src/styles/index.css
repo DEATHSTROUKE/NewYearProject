@@ -421,7 +421,7 @@ h1 {
 .train-message {
   position: absolute;
   width: 100%;
-  bottom: 30%;
+  bottom: 10%;
   left: 0;
   opacity: 0;
   transition: 0.4s opacity ease-out;

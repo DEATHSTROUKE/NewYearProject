@@ -40,7 +40,11 @@ function TestPage() {
   return (
     <div className="main-wrapper">
       <div className="main-page__row">
-        <Train activeGifts={5} prizesText={['1', '2', '3', '4', '5']} />
+        <Train
+          activeGifts={0}
+          isBigTrain
+          prizesText={['1', '2', '3', '4', '5']}
+        />
       </div>
       <div className="main-page__row">
         <Message text="Новогодняя викторина начнется 18 декабря в 10.00" />
