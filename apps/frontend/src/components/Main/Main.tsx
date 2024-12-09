@@ -20,7 +20,7 @@ export const Main = () => {
       return
     }
 
-    return navigate('/testPage')
+    // return navigate('/testPage')
 
     if (data) {
       switch (data.gameState) {
