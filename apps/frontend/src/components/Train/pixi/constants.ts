@@ -13,7 +13,7 @@ export const GIFTS_SPRITES = {
     textureName: 'BigGift2',
     coordX: 263.51,
     coordY: 903.26,
-    zIndex: 3,
+    zIndex: 10,
     index: 2,
   },
   bigGift3: {

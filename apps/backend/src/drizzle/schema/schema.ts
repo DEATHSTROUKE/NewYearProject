@@ -68,6 +68,7 @@ export const userReviewsTable = pgTable('user_reviews', {
   id: cuid2('id').primaryKey().defaultRandom(),
   userId: integer('user_id')
     .notNull()
+    .unique()
     .references(() => userTable.id),
   text: text('text').notNull(),
   createdAt: timestamp('created_at').notNull().defaultNow(),

@@ -11,9 +11,11 @@
     "build": "nx run-many -t build",
     "lint:prettier": "prettier . -c -w",
     "db:studio": "drizzle-kit studio --port 5555 --config apps/backend/drizzle.config.ts",
+    "db:studio:prod": "drizzle-kit studio --port 5555 --config apps/backend/drizzle-prod.config.ts",
     "db:push": "drizzle-kit push --config apps/backend/drizzle.config.ts",
     "db:generate": "drizzle-kit generate --config apps/backend/drizzle.config.ts",
     "db:migrate": "drizzle-kit migrate --config apps/backend/drizzle.config.ts",
+    "db:migrate:prod": "drizzle-kit migrate --config apps/backend/drizzle-prod.config.ts",
     "db:seed": "TS_NODE_PROJECT=apps/backend/tsconfig.app.json tsx -r tsconfig-paths/register apps/backend/src/drizzle/seed/seed.ts",
     "admin:orval": "orval --config apps/admin/orval.config.ts",
     "test:word": "TS_NODE_PROJECT=apps/backend/tsconfig.app.json tsx -r tsconfig-paths/register apps/backend/src/client/utils/checkWord.ts"

@@ -13,7 +13,7 @@ import {
   WaitNextGameState,
 } from '@shared'
 import dayjs from 'dayjs'
-import { and, count, desc, eq, inArray, lt } from 'drizzle-orm'
+import { and, count, desc, eq, inArray, isNotNull, lt } from 'drizzle-orm'
 
 import * as schema from '../drizzle/schema/schema'
 import { FeedbackData, RegisterFields } from './types/client.dto'
@@ -59,14 +59,9 @@ export class ClientService {
       return this.getBeforeGameState()
     }
 
-    console.info(firstWordStartDate, lastWordEndDate, dayjs())
-    console.info(dayjs().isBetween(firstWordStartDate, lastWordEndDate))
-
     const { done: doneCurWord, wordIndex } = await this.isDoneCurrentWord(
       userId,
     )
-
-    console.info(doneCurWord, wordIndex)
 
     if (
       dayjs().isBetween(firstWordStartDate, lastWordEndDate) &&
@@ -227,8 +222,8 @@ export class ClientService {
       throw new BadRequestException(ApiErrorString.BadRequest)
     }
 
-    console.info({ correctWord, attempts })
-    const isFinished = attempts.some(attempt => attempt.isCorrect)
+    const isFinished =
+      attempts.some(attempt => attempt.isCorrect) || attempts.length === 5
 
     return {
       gameState: 'inGame',
@@ -392,6 +387,7 @@ export class ClientService {
     const maxLotteryNumber = await this.db.query.userTable.findFirst({
       columns: { lotteryNumber: true },
       orderBy: desc(schema.userTable.lotteryNumber),
+      where: isNotNull(schema.userTable.lotteryNumber),
     })
 
     if (

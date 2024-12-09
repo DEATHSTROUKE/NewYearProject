@@ -24,23 +24,17 @@ export class UserService {
         surname: schema.userTable.surname,
         middleName: schema.userTable.middleName,
         phone: schema.userTable.phone,
+        correctAttempts: count(schema.attemptsTable.id),
       })
       .from(schema.userTable)
-    const correctAttempts = await this.db
-      .select({ count: count() })
-      .from(schema.attemptsTable)
+      .leftJoin(
+        schema.attemptsTable,
+        eq(schema.userTable.id, schema.attemptsTable.userId),
+      )
       .where(eq(schema.attemptsTable.isCorrect, true))
+      .groupBy(schema.userTable.id)
 
-    return users.map(user => {
-      return {
-        id: user.id,
-        name: user.name,
-        surname: user.surname,
-        middleName: user.middleName,
-        phone: user.phone,
-        correctAttempts: correctAttempts[0].count,
-      }
-    })
+    return users
   }
 
   async findOne(id: number): Promise<UserDetailed> {

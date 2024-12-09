@@ -2,12 +2,18 @@ import bcrypt from 'bcrypt'
 import dotenv from 'dotenv'
 import { sql } from 'drizzle-orm'
 import { drizzle } from 'drizzle-orm/node-postgres'
+// import path from 'path'
 import { Pool } from 'pg'
 
 import * as schema from '../schema/schema'
 import { ADMIN_TEXTS, AdminTextsTitle, GAME_WORDS } from './constants'
 import { getRussianWords } from './russianWords'
 
+// const envPath = path.join(__dirname, '../../../../..', '/.env.production')
+
+// console.info(envPath)
+
+// dotenv.config({ path: envPath })
 dotenv.config()
 
 const pool = new Pool({
@@ -18,7 +24,7 @@ const db = drizzle(pool, {
   schema: {
     ...schema,
   },
-  // logger: true,
+  logger: true,
 })
 
 async function seed() {

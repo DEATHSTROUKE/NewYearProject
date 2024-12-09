@@ -21,9 +21,7 @@ export const AfterLottery = () => {
       <div className="main-page__row">
         <Train activeGifts={activeGifts} />
       </div>
-      <div className="main-page__row">
-        <Message text={text} />
-      </div>
+      <div className="main-page__row">{text && <Message text={text} />}</div>
     </div>
   )
 }

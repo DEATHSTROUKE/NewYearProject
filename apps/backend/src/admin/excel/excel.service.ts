@@ -1,7 +1,7 @@
 import { DATABASE_CONNECTION, DB_TYPE } from '@/database/db-connection'
 import * as schema from '@/drizzle/schema/schema'
 import { Inject, Injectable } from '@nestjs/common'
-import { and, count, eq } from 'drizzle-orm'
+import { and, count, eq, isNotNull } from 'drizzle-orm'
 import xlsx from 'xlsx'
 
 @Injectable()
@@ -29,7 +29,7 @@ export class ExcelService {
 
     const workbook = xlsx.utils.book_new()
     const worksheet = xlsx.utils.json_to_sheet(worbookJson)
-    xlsx.utils.book_append_sheet(workbook, worksheet, 'Users')
+    xlsx.utils.book_append_sheet(workbook, worksheet, 'Reviews')
 
     console.info(worbookJson)
 
@@ -64,7 +64,12 @@ export class ExcelService {
         ),
       })
       .from(schema.userTable)
-      .where(eq(schema.userTable.isLotteryUser, true))
+      .where(
+        and(
+          eq(schema.userTable.isLotteryUser, true),
+          isNotNull(schema.userTable.lotteryNumber),
+        ),
+      )
 
     return users
   }

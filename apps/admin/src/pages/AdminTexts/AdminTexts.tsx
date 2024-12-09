@@ -6,6 +6,7 @@ import {
   DATETIME_TEXTS,
 } from '@shared'
 import { useQueryClient } from '@tanstack/react-query'
+import dayjs from 'dayjs'
 import { useState } from 'react'
 
 import { GetAdminTextsRequest } from '@/api/generated/users/model'
@@ -56,12 +57,18 @@ export const AdminTextField = ({
   })
 
   const handleSave = () => {
-    console.info(form)
+    console.info({
+      title,
+      startDate: dayjs(form.startDate).utc().format(),
+      endDate: dayjs(form.endDate).utc().format(),
+    })
     updateAdminText(
       {
         data: {
           title,
-          ...form,
+          text: form.text,
+          startDate: dayjs(form.startDate).utc().format(),
+          endDate: dayjs(form.endDate).utc().format(),
         },
       },
       {

@@ -1,8 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;600&family=Ubuntu:wght@300;400;700&display=swap');
 
 :root {
-  --color-red: #e12c31;
+  --color-light: #e12c31;
+  --color-red: radial-gradient(circle, #c40a27 0%, #ab001b 100%);
   --color-green: #2c7746;
+  --color-green: #398368;
+  --color-green: #244d35;
+  --color-green: #2c5f41;
+  --color-green: #3b846b;
   --color-dark-green: #2c5f41;
 }
 
@@ -74,7 +79,6 @@ h3 {
   display: flex;
   justify-content: space-between;
   position: relative;
-  background: var(--color-red);
 }
 
 .header__right {
@@ -195,11 +199,6 @@ h3 {
 /* Registration */
 .main {
   background: url('../assets/images_old/Snow1.png');
-}
-
-.bottom__gift {
-  position: relative;
-  /* left: 55px; */
 }
 
 .reg__wrapper {
@@ -519,6 +518,7 @@ h1 {
   gap: 15px 15px;
   min-width: 470px;
   margin-bottom: 30px;
+  place-items: center;
 }
 
 .game-field__wrapper.game-field__wrapper--long {
@@ -845,21 +845,28 @@ h1 {
   /* height: 100%; */
 }
 .top__gift {
+  position: relative;
   z-index: 2;
+  width: 100%;
 }
+
+.bottom__gift {
+  position: relative;
+  width: 100%;
+}
+
+.top__gift img {
+  display: block;
+  margin: 0 auto;
+  width: 85%;
+}
+
+.bottom__gift img {
+  width: 100%;
+}
+
 /* MEDIA */
 @media screen and (max-width: 1440px) {
-  .top__gift img {
-    width: 600px;
-  }
-
-  .bottom__gift {
-    /* left: 45px; */
-  }
-  .bottom__gift img {
-    width: 700px;
-  }
-
   .header__sound .sound__btn {
     padding: 7px;
   }
@@ -1070,17 +1077,6 @@ h1 {
     padding: 0;
   }
 
-  .top__gift img {
-    width: 500px;
-  }
-
-  .bottom__gift {
-    /* left: 35px; */
-  }
-  .bottom__gift img {
-    width: 568px;
-  }
-
   .reg-form {
     display: block;
     margin-top: -10px;
@@ -1189,17 +1185,6 @@ h1 {
   .how2play__main {
     padding: 15px 30px;
   }
-
-  .top__gift img {
-    width: 400px;
-  }
-
-  .bottom__gift {
-    /* left: 25px; */
-  }
-  .bottom__gift img {
-    width: 450px;
-  }
 }
 @media screen and (max-width: 440px) {
   .container {
@@ -1238,17 +1223,6 @@ h1 {
 @media screen and (max-width: 368px) {
   .reg-form {
     padding: 20px;
-  }
-
-  .top__gift img {
-    width: 360px;
-  }
-
-  .bottom__gift {
-    /* left: 20px; */
-  }
-  .bottom__gift img {
-    width: 391px;
   }
 
   .checkbox label,

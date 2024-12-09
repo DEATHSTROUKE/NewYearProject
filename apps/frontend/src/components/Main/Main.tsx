@@ -10,7 +10,6 @@ import { IsLoading } from '../IsLoading/IsLoading'
 export const Main = () => {
   const navigate = useNavigate()
   const { data, isLoading, isError, error } = useGetState()
-  console.log(error)
 
   useEffect(() => {
     if (isError && error instanceof AxiosError) {
@@ -21,7 +20,7 @@ export const Main = () => {
       return
     }
 
-    // return navigate('/testPage')
+    return navigate('/testPage')
 
     if (data) {
       switch (data.gameState) {

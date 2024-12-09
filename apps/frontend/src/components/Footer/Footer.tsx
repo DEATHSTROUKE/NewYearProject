@@ -27,7 +27,7 @@ export const Footer = () => {
               <div className="footer__text">
                 <a
                   rel="noreferrer"
-                  href="https://telegra.ph/Politika-v-otnoshenii-obrabotki-personalnyh-dannyh-12-03-4"
+                  href="https://telegra.ph/Politika-v-otnoshenii-obrabotki-personalnyh-dannyh-12-09-3"
                   target="_blank"
                   className="underline"
                 >
@@ -98,7 +98,7 @@ export const Footer = () => {
                 <div className="footer__text">
                   <a
                     rel="noreferrer"
-                    href="https://telegra.ph/Politika-v-otnoshenii-obrabotki-personalnyh-dannyh-12-03-4"
+                    href="https://telegra.ph/Politika-v-otnoshenii-obrabotki-personalnyh-dannyh-12-09-3"
                     target="_blank"
                     className="underline"
                   >

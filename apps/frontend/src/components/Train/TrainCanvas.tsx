@@ -39,6 +39,7 @@ export const TrainCanvas: FC<TrainProps> = ({
 
     const container = containerRef.current
     if (!container) return
+
     const canvas = document.createElement('canvas')
     container.appendChild(canvas)
 
@@ -58,10 +59,12 @@ export const TrainCanvas: FC<TrainProps> = ({
       view: canvas,
     })
 
-    setApp(app)
-  }, [activeGifts, trainImage])
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
+    globalThis.__PIXI_APP__ = app
 
-  useEffect(() => {
+    setApp(app)
+
     return () => {
       if (!app) return
       try {
@@ -71,7 +74,7 @@ export const TrainCanvas: FC<TrainProps> = ({
         //console.log(e)
       }
     }
-  }, [app])
+  }, [activeGifts, isBigTrain, lightImage, prizesText, snowImage, trainImage])
 
   const closeMessageHandler = useCallback(() => {
     setMessageText(null)

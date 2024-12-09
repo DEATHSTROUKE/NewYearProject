@@ -1,0 +1,1 @@
+ALTER TABLE "users" ADD CONSTRAINT "users_lottery_number_unique" UNIQUE("lottery_number");

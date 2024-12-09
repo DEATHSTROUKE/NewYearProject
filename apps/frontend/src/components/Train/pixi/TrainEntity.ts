@@ -64,28 +64,36 @@ export class TrainEntity extends PIXI.Application {
       this.clientHeight / this.mainContainer.height,
     )
     console.info('scale', scale)
+
+    // this.mainContainer.pivot.set(window.innerWidth / 2, window.innerHeight / 2)
     this.mainContainer.scale.set(scale)
 
-    this.mainContainer.pivot.set(0.5)
-    this.mainContainer.x =
-      this.clientWidth / 100 - this.mainContainer.width / 100
+    this.mainContainer.pivot.set(
+      this.mainContainer.width / 2,
+      this.mainContainer.height / 2,
+    )
+
+    //this.mainContainer.x = this.mainContainer.width / 14 //70
+    //this.mainContainer.y = this.mainContainer.height / 5.35 //110
+    this.mainContainer.x = 0
+
     this.mainContainer.sortableChildren = true
     this.mainContainer.interactive = true
+    this.mainContainer.interactiveChildren = true
 
-    this.mainContainer.on('pointerdown', e => {
-      this.setMessage(null)
-    })
     console.info(
       'main container 2',
       this.mainContainer.width,
       this.mainContainer.height,
     )
+
     this.stage.addChild(this.mainContainer)
     this.renderer.plugins.interaction.autoPreventDefault = false
 
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
     this.renderer.view.style['touch-action'] = 'auto'
+    this.stage.interactive = true
   }
 
   async loadPrizes() {
@@ -145,7 +153,6 @@ export class TrainEntity extends PIXI.Application {
     zIndex,
     index,
   }: {
-    // texture: PIXI.Texture<PIXI.Resource> | undefined
     textureName: string
     coordX: number
     coordY: number
@@ -163,7 +170,12 @@ export class TrainEntity extends PIXI.Application {
     giftSprite.y = coordY
     giftSprite.zIndex = zIndex
     giftSprite.interactive = true
+
+    console.info({ giftSprite, textureName })
+
     giftSprite.on('pointerdown', e => {
+      console.info(e)
+      console.info({ giftSprite })
       e.stopPropagation()
       this.onActiveGiftClick(index)
     })

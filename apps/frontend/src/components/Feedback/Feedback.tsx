@@ -71,6 +71,7 @@ export const Feedback: FC<FeedbackProps> = ({ text, afterFeedbackText }) => {
             <button
               className="reg-form__btn feedback-form__btn"
               onClick={() => onSendFeedback()}
+              disabled={isPending}
             >
               Отправить
             </button>

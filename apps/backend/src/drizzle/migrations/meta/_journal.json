@@ -43,6 +43,13 @@
       "when": 1733512105137,
       "tag": "0005_faithful_scarecrow",
       "breakpoints": true
+    },
+    {
+      "idx": 6,
+      "version": "7",
+      "when": 1733688072732,
+      "tag": "0006_harsh_gateway",
+      "breakpoints": true
     }
   ]
 }

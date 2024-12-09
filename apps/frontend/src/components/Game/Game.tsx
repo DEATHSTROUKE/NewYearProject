@@ -32,8 +32,15 @@ export const Game: FC<GameProps> = ({
   const queryClient = useQueryClient()
 
   const freeCellsCount = !isEnd
-    ? (5 - currentLine - 1) * wordLength
+    ? 4 * wordLength - letters.length
     : 5 * wordLength - letters.length
+
+  console.info({
+    wordLength,
+    currentLine,
+    letLengs: letters.length,
+    freeCellsCount,
+  })
 
   const freeCells: Letter[] = new Array(freeCellsCount).fill({
     letter: '',
@@ -47,6 +54,10 @@ export const Game: FC<GameProps> = ({
 
   const [isKeyboardOpen, setIsKeyboardOpen] = useState(false)
   const [canAttempt, setCanAttempt] = useState(false)
+
+  useEffect(() => {
+    setInputWord(new Array(wordLength).fill(''))
+  }, [wordLength])
 
   const gameSuccessCallback = (data: { isCorrect: boolean }) => {
     setInputWord(new Array(wordLength).fill(''))

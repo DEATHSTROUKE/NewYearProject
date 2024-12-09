@@ -14,6 +14,7 @@ import { DATABASE_CONNECTION } from './db-connection'
           schema: {
             ...schema,
           },
+          logger: configService.get('NODE_ENV') === 'development',
         })
       },
       inject: [ConfigService],
