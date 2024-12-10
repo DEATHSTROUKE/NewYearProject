@@ -1,7 +1,8 @@
 cd NewYearProject
+docker compose down
 git pull
 yarn
 yarn nx reset
 yarn build
-docker compose down
+killall node
 docker compose up -d --build
