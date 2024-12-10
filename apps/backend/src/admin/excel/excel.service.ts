@@ -29,7 +29,7 @@ export class ExcelService {
 
     const workbook = xlsx.utils.book_new()
     const worksheet = xlsx.utils.json_to_sheet(worbookJson)
-    xlsx.utils.book_append_sheet(workbook, worksheet, 'Reviews')
+    xlsx.utils.book_append_sheet(workbook, worksheet, 'Отзывы')
 
     console.info(worbookJson)
 
@@ -50,18 +50,7 @@ export class ExcelService {
         name: schema.userTable.name,
         middleName: schema.userTable.middleName,
         lotteryNumber: schema.userTable.lotteryNumber,
-
-        correctAttempts: count(
-          this.db
-            .select({ id: schema.attemptsTable.id })
-            .from(schema.attemptsTable)
-            .where(
-              and(
-                eq(schema.attemptsTable.userId, schema.userTable.id),
-                eq(schema.attemptsTable.isCorrect, true),
-              ),
-            ),
-        ),
+        correctAnswers: count(schema.attemptsTable.id),
       })
       .from(schema.userTable)
       .where(
@@ -70,7 +59,43 @@ export class ExcelService {
           isNotNull(schema.userTable.lotteryNumber),
         ),
       )
+      .leftJoin(
+        schema.attemptsTable,
+        and(
+          eq(schema.attemptsTable.userId, schema.userTable.id),
+          eq(schema.attemptsTable.isCorrect, true),
+        ),
+      )
+      .groupBy(schema.userTable.id)
 
-    return users
+    const workbook = xlsx.utils.book_new()
+
+    for (let i = 1; i <= 5; i++) {
+      const worbookJson = users
+        .filter(user => user.correctAnswers >= i)
+        .map(user => {
+          return {
+            Фамилия: user.surname,
+            Имя: user.name,
+            Отчество: user.middleName,
+            Телефон: `+7${user.phone}`,
+            'Номер в лоттерее': user.lotteryNumber,
+          }
+        })
+
+      const worksheet = xlsx.utils.json_to_sheet(worbookJson)
+      xlsx.utils.book_append_sheet(
+        workbook,
+        worksheet,
+        `Подарки ${i}-го уровня`,
+      )
+    }
+
+    const csvBuffer = xlsx.write(workbook, {
+      bookType: 'xlsx',
+      type: 'buffer',
+    })
+
+    return csvBuffer
   }
 }

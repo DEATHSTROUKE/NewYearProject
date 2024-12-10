@@ -19,7 +19,7 @@ export const Component = () => {
 
   const onDownloadLotteryNumbers = async () => {
     const data = await adminApi.getApiAdminExcelLotteryNumbers()
-    downloadFile(data, 'lotteryNumbers.csv')
+    downloadFile(data, 'lotteryNumbers.xlsx')
   }
 
   return (

@@ -311,7 +311,7 @@ export class ClientService {
     return {
       gameState: 'afterLottery',
       text: text?.text || '',
-      activeGifts: gifts.activeGifts,
+      ...(await this.getUserGifts(userId)),
     }
   }
 

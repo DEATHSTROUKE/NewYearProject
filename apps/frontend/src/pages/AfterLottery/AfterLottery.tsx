@@ -10,7 +10,7 @@ import { useMainStore } from '@/store/mainStore'
 export const AfterLottery = () => {
   const setTimer = useMainStore(state => state.setTimer)
   const location = useLocation() as { state: AfterLotteryState }
-  const { text, activeGifts } = location.state
+  const { text, activeGifts, prizesText } = location.state
 
   useLayoutEffect(() => {
     setTimer(null)
@@ -19,7 +19,7 @@ export const AfterLottery = () => {
   return (
     <div className="main-wrapper">
       <div className="main-page__row">
-        <Train activeGifts={activeGifts} />
+        <Train activeGifts={activeGifts} prizesText={prizesText} />
       </div>
       <div className="main-page__row">{text && <Message text={text} />}</div>
     </div>

@@ -57,18 +57,17 @@ export const AdminTextField = ({
   })
 
   const handleSave = () => {
-    console.info({
-      title,
-      startDate: dayjs(form.startDate).utc().format(),
-      endDate: dayjs(form.endDate).utc().format(),
-    })
     updateAdminText(
       {
         data: {
           title,
           text: form.text,
-          startDate: dayjs(form.startDate).utc().format(),
-          endDate: dayjs(form.endDate).utc().format(),
+          startDate: dayjs(form.startDate).isValid()
+            ? dayjs(form.startDate).utc().format()
+            : null,
+          endDate: dayjs(form.endDate).isValid()
+            ? dayjs(form.endDate).utc().format()
+            : null,
         },
       },
       {

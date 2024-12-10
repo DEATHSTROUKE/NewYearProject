@@ -83,7 +83,11 @@ export const Component = () => {
                     <Stack rowGap={'3px'}>
                       {item.attempts.map(attempt => {
                         return (
-                          <Stack direction={'row'} gap={'10px'}>
+                          <Stack
+                            direction={'row'}
+                            gap={'10px'}
+                            key={attempt.id}
+                          >
                             <Typography
                               key={attempt.id}
                               color={
