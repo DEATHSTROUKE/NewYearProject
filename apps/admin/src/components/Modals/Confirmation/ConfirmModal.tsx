@@ -5,6 +5,7 @@ import { BaseModal } from '../BaseModal'
 
 type ConfirmModalProps = {
   action: () => void
+  close: () => void
   isOpen: boolean
   title: string
   description?: string
@@ -16,6 +17,7 @@ export const ConfirmModal = ({
   action,
   description,
   title,
+  close,
   actionTitle = 'Удалить',
 }: ConfirmModalProps) => {
   const navigate = useNavigate()
@@ -39,14 +41,11 @@ export const ConfirmModal = ({
       >
         {description}
       </Typography>
-      <Stack
-        direction={'row'}
-        columnGap={'15px'}
-      >
+      <Stack direction={'row'} columnGap={'15px'}>
         <Button
           onClick={() => {
             action()
-            navigate(-1)
+            close()
           }}
           sx={{ width: '100%' }}
         >
@@ -56,7 +55,7 @@ export const ConfirmModal = ({
           variant="outlined"
           color="neutral"
           sx={{ width: '100%' }}
-          onClick={() => navigate(-1)}
+          onClick={close}
         >
           Отменить
         </Button>

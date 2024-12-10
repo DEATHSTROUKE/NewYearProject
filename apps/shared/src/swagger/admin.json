@@ -234,8 +234,29 @@
             }
           }
         }
+      },
+      "delete": {
+        "tags": ["Admin"],
+        "security": [{ "bearerAuth": [] }],
+        "summary": "Delete user",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
       }
     },
+
     "/api/admin/users/{id}/changeIsLotteryUser": {
       "patch": {
         "tags": ["Admin"],

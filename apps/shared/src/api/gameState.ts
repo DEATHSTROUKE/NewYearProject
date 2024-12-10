@@ -50,6 +50,7 @@ export type WaitEndLotteryState = {
 export type AfterLotteryState = {
   gameState: 'afterLottery'
   text: string
+  ticketNumber: number
 } & Gifts
 
 export type GetState =

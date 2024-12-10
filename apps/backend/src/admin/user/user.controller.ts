@@ -1,4 +1,12 @@
-import { Body, Controller, Get, Param, Patch, UseGuards } from '@nestjs/common'
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Param,
+  Patch,
+  UseGuards,
+} from '@nestjs/common'
 
 import { AuthGuard } from '../guards/auth.guard'
 import {
@@ -29,6 +37,12 @@ export class UserController {
     @Body() { isLotteryUser }: PostApiAdminUserIdChangeIsLotteryUserBody,
   ) {
     await this.userService.update(parseInt(id), { isLotteryUser })
+    return { status: 'ok' }
+  }
+
+  @Delete(':id')
+  async remove(@Param('id') id: string) {
+    await this.userService.remove(parseInt(id))
     return { status: 'ok' }
   }
 }

@@ -303,14 +303,19 @@ export class ClientService {
   private async getAfterLotteryState(
     userId: number,
   ): Promise<AfterLotteryState> {
-    const gifts = await this.getUserGifts(userId)
     const text = await this.db.query.adminTextsTable.findFirst({
       where: eq(schema.adminTextsTable.title, 'afterLottery'),
+    })
+
+    const user = await this.db.query.userTable.findFirst({
+      where: eq(schema.userTable.id, userId),
+      columns: { lotteryNumber: true },
     })
 
     return {
       gameState: 'afterLottery',
       text: text?.text || '',
+      ticketNumber: user?.lotteryNumber || 0,
       ...(await this.getUserGifts(userId)),
     }
   }

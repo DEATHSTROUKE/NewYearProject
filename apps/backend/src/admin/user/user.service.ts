@@ -138,4 +138,16 @@ export class UserService {
       .set({ isLotteryUser })
       .where(eq(schema.userTable.id, id))
   }
+
+  async remove(id: number) {
+    await this.db
+      .delete(schema.attemptsTable)
+      .where(eq(schema.attemptsTable.userId, id))
+
+    await this.db
+      .delete(schema.userReviewsTable)
+      .where(eq(schema.userReviewsTable.userId, id))
+
+    await this.db.delete(schema.userTable).where(eq(schema.userTable.id, id))
+  }
 }

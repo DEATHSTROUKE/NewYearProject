@@ -976,6 +976,75 @@ export function useGetApiAdminUsersId<
 }
 
 /**
+ * @summary Delete user
+ */
+export const deleteApiAdminUsersId = (id: string) => {
+  return baseApiRequest<void>({
+    url: `/api/admin/users/${id}`,
+    method: 'DELETE',
+  })
+}
+
+export const getDeleteApiAdminUsersIdMutationOptions = <
+  TError = unknown,
+  TContext = unknown,
+>(options?: {
+  mutation?: UseMutationOptions<
+    Awaited<ReturnType<typeof deleteApiAdminUsersId>>,
+    TError,
+    { id: string },
+    TContext
+  >
+}): UseMutationOptions<
+  Awaited<ReturnType<typeof deleteApiAdminUsersId>>,
+  TError,
+  { id: string },
+  TContext
+> => {
+  const { mutation: mutationOptions } = options ?? {}
+
+  const mutationFn: MutationFunction<
+    Awaited<ReturnType<typeof deleteApiAdminUsersId>>,
+    { id: string }
+  > = props => {
+    const { id } = props ?? {}
+
+    return deleteApiAdminUsersId(id)
+  }
+
+  return { mutationFn, ...mutationOptions }
+}
+
+export type DeleteApiAdminUsersIdMutationResult = NonNullable<
+  Awaited<ReturnType<typeof deleteApiAdminUsersId>>
+>
+
+export type DeleteApiAdminUsersIdMutationError = unknown
+
+/**
+ * @summary Delete user
+ */
+export const useDeleteApiAdminUsersId = <
+  TError = unknown,
+  TContext = unknown,
+>(options?: {
+  mutation?: UseMutationOptions<
+    Awaited<ReturnType<typeof deleteApiAdminUsersId>>,
+    TError,
+    { id: string },
+    TContext
+  >
+}): UseMutationResult<
+  Awaited<ReturnType<typeof deleteApiAdminUsersId>>,
+  TError,
+  { id: string },
+  TContext
+> => {
+  const mutationOptions = getDeleteApiAdminUsersIdMutationOptions(options)
+
+  return useMutation(mutationOptions)
+}
+/**
  * @summary Change user lottery status
  */
 export const patchApiAdminUsersIdChangeIsLotteryUser = (

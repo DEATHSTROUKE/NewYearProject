@@ -10,7 +10,7 @@ type TicketProps = {
 export const LotteryTicket: FC<TicketProps> = ({ ticketNumber, textBelow }) => {
   return (
     <div className="ticket">
-      <h1>Ваш номер для розыгрыша</h1>
+      <h1>Ваш номер в розыгрыше</h1>
       <div className="ticket__image">
         <img src={Sphere} alt="Шар" />
         <div className="ticket__number">{ticketNumber}</div>
