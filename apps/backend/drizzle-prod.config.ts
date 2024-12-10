@@ -5,7 +5,7 @@ import path from 'path'
 const envPath = path.join(__dirname, '../..', '/.env.production')
 console.log(envPath)
 
-dotenv.config({ path: envPath })
+dotenv.config({ path: envPath, override: true })
 console.info('migrate prod db', process.env.DATABASE_URL)
 
 export default defineConfig({

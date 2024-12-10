@@ -29,9 +29,11 @@ export class UserService {
       .from(schema.userTable)
       .leftJoin(
         schema.attemptsTable,
-        eq(schema.userTable.id, schema.attemptsTable.userId),
+        and(
+          eq(schema.attemptsTable.userId, schema.userTable.id),
+          eq(schema.attemptsTable.isCorrect, true),
+        ),
       )
-      .where(eq(schema.attemptsTable.isCorrect, true))
       .groupBy(schema.userTable.id)
 
     return users

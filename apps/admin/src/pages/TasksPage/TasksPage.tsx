@@ -1,6 +1,7 @@
 import { adminApi } from '@/api'
 import { Button, Card, Grid, Stack, Typography } from '@mui/joy'
 import { useQueryClient } from '@tanstack/react-query'
+import dayjs from 'dayjs'
 import { useState } from 'react'
 
 import { Task, UpdateTaskRequest } from '@/api/generated/users/model'
@@ -91,7 +92,10 @@ export const TaskBlock = ({
       {
         id,
         data: {
-          ...form,
+          answer: form.answer,
+          meaning: form.meaning,
+          question: form.question,
+          startDate: dayjs(form.startDate).utc().format(),
         },
       },
       {

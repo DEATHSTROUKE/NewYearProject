@@ -17,8 +17,7 @@
     "db:migrate": "drizzle-kit migrate --config apps/backend/drizzle.config.ts",
     "db:migrate:prod": "drizzle-kit migrate --config apps/backend/drizzle-prod.config.ts",
     "db:seed": "TS_NODE_PROJECT=apps/backend/tsconfig.app.json tsx -r tsconfig-paths/register apps/backend/src/drizzle/seed/seed.ts",
-    "admin:orval": "orval --config apps/admin/orval.config.ts",
-    "test:word": "TS_NODE_PROJECT=apps/backend/tsconfig.app.json tsx -r tsconfig-paths/register apps/backend/src/client/utils/checkWord.ts"
+    "admin:orval": "orval --config apps/admin/orval.config.ts"
   },
   "private": true,
   "dependencies": {

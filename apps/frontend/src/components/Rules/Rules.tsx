@@ -32,7 +32,7 @@ export const Rules = () => {
           <div className="rule__icon">
             <RuleIcon3 />
           </div>
-          <div className="rule__title">Собери вагон подарков!</div>
+          <div className="rule__title">Соберите вагон подарков!</div>
           <div className="rule__text">
             За каждое угаданное слово на перроне будут появляться подарки
           </div>
@@ -41,7 +41,7 @@ export const Rules = () => {
           <div className="rule__icon">
             <RuleIcon4 />
           </div>
-          <div className="rule__title">Участвуй в розыгрыше!</div>
+          <div className="rule__title">Участвуйте в розыгрыше!</div>
           <div className="rule__text">
             Чем больше загадок отгадано, тем больше шансов на приз
           </div>
