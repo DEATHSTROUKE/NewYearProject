@@ -52,7 +52,7 @@ function TestPage() {
       <div className="main-page__row">
         <Message
           text={`<a href="https://google.com" target="_blank">Задание 1.</a> <a
-          href="https://telegra.ph/Novogodnyaya-viktorina-Naryadi-svoyu-yolochku-12-12"
+          href="https://telegra.ph/Novogodnij-ehkspress-Blagopoluchiya-soberi-vagon-podarkov-12-11"
           target="_blank"
         >
           К правилам
@@ -61,7 +61,7 @@ function TestPage() {
       </div>
       <div className="main-page__row">
         <a
-          href="https://telegra.ph/Novogodnyaya-viktorina-Naryadi-svoyu-yolochku-12-12"
+          href="https://telegra.ph/Novogodnij-ehkspress-Blagopoluchiya-soberi-vagon-podarkov-12-11"
           target="_blank"
           className="main-page__btn"
           rel="noreferrer"

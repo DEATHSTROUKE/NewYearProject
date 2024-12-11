@@ -24,7 +24,7 @@ export const BeforeGame = () => {
       <div className="main-page__row">
         <a
           rel="noreferrer"
-          href="https://telegra.ph/Novogodnyaya-viktorina-Naryadi-svoyu-yolochku-12-17"
+          href="https://telegra.ph/Novogodnij-ehkspress-Blagopoluchiya-soberi-vagon-podarkov-12-11"
           target="_blank"
           className="main-page__btn"
         >
