@@ -56,7 +56,7 @@ export const Feedback: FC<FeedbackProps> = ({ text, afterFeedbackText }) => {
             <div className="reg-form__input">
               <label>
                 <textarea
-                  placeholder="Для продолжения игры нужно оставить отзыв..."
+                  placeholder="Для участия в розыгрыше подарков здесь нужно написать ответ..."
                   onChange={e => setFeedback(e.target.value)}
                   value={feedback}
                 />
