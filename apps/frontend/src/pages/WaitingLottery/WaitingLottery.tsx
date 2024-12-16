@@ -1,28 +1,18 @@
 import { WaitEndLotteryState } from '@shared'
-import { useLayoutEffect } from 'react'
 import { useLocation } from 'react-router-dom'
 
 import { LotteryTicket } from '@/components/LotteryTicket/LotteryTicket'
 import { Message } from '@/components/Message/Message'
 import { Train } from '@/components/Train/Train'
 
-import { useMainStore } from '@/store/mainStore'
-
 export const WaitingLottery = () => {
-  const setTimer = useMainStore(state => state.setTimer)
   const location = useLocation() as { state: WaitEndLotteryState }
-  const {
-    text,
-    activeGifts,
-    lotteryTime,
-    textWithLink,
-    ticketNumber,
-    prizesText,
-  } = location.state
+  const { text, activeGifts, textWithLink, ticketNumber, prizesText } =
+    location.state
 
-  useLayoutEffect(() => {
-    setTimer(lotteryTime)
-  }, [setTimer, lotteryTime])
+  // useLayoutEffect(() => {
+  //   setTimer(lotteryTime)
+  // }, [setTimer, lotteryTime])
 
   return (
     <div className="main-wrapper">

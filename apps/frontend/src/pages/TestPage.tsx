@@ -1,5 +1,4 @@
 import { Letter } from '@shared'
-import React, { useLayoutEffect } from 'react'
 
 import { Feedback } from '@/components/Feedback/Feedback'
 import { Game } from '@/components/Game/Game'
@@ -10,14 +9,12 @@ import { Message } from '@/components/Message/Message'
 import { Rules } from '@/components/Rules/Rules'
 import { Train } from '@/components/Train/Train'
 
-import { useMainStore } from '@/store/mainStore'
-
 function TestPage() {
-  const setTimer = useMainStore(state => state.setTimer)
+  // const setTimer = useMainStore(state => state.setTimer)
 
-  useLayoutEffect(() => {
-    setTimer('2023-12-21T22:52:27.777Z')
-  }, [setTimer])
+  // useLayoutEffect(() => {
+  //   setTimer('2023-12-21T22:52:27.777Z')
+  // }, [setTimer])
 
   const letters: Letter[] = [
     { letter: 'а', state: 'yellow' },
