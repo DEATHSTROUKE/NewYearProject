@@ -50,6 +50,13 @@
       "when": 1733688072732,
       "tag": "0006_harsh_gateway",
       "breakpoints": true
+    },
+    {
+      "idx": 7,
+      "version": "7",
+      "when": 1734432652004,
+      "tag": "0007_purple_norman_osborn",
+      "breakpoints": true
     }
   ]
 }

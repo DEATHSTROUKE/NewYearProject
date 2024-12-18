@@ -1,5 +1,6 @@
 import { relations } from 'drizzle-orm'
 import {
+  bigint,
   boolean,
   integer,
   pgTable,
@@ -13,7 +14,7 @@ import { AdminTextsTitleEnum } from '../seed/constants'
 import { cuid2 } from './cuid'
 
 export const userTable = pgTable('users', {
-  id: integer('id').primaryKey(),
+  id: bigint({ mode: 'number' }).primaryKey(),
   name: varchar('name', { length: 255 }).notNull(),
   surname: varchar('surname', { length: 255 }).notNull(),
   middleName: varchar('middle_name', { length: 255 }).notNull(),
