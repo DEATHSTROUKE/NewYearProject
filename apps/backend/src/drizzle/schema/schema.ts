@@ -14,7 +14,7 @@ import { AdminTextsTitleEnum } from '../seed/constants'
 import { cuid2 } from './cuid'
 
 export const userTable = pgTable('users', {
-  id: bigint({ mode: 'number' }).primaryKey(),
+  id: bigint('id', { mode: 'number' }).primaryKey(),
   name: varchar('name', { length: 255 }).notNull(),
   surname: varchar('surname', { length: 255 }).notNull(),
   middleName: varchar('middle_name', { length: 255 }).notNull(),
@@ -58,7 +58,7 @@ export const attemptsTable = pgTable('attempts', {
   wordId: cuid2('word_id')
     .notNull()
     .references(() => gameWordsTable.id),
-  userId: integer('user_id')
+  userId: bigint('user_id', { mode: 'number' })
     .notNull()
     .references(() => userTable.id),
   isCorrect: boolean('is_correct').notNull(),
@@ -67,7 +67,7 @@ export const attemptsTable = pgTable('attempts', {
 
 export const userReviewsTable = pgTable('user_reviews', {
   id: cuid2('id').primaryKey().defaultRandom(),
-  userId: integer('user_id')
+  userId: bigint('user_id', { mode: 'number' })
     .notNull()
     .unique()
     .references(() => userTable.id),
