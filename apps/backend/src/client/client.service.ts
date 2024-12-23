@@ -383,26 +383,27 @@ export class ClientService {
       text: data.feedback,
     })
 
-    const maxLotteryNumber = await this.db.query.userTable.findFirst({
-      columns: { lotteryNumber: true },
-      orderBy: desc(schema.userTable.lotteryNumber),
-      where: isNotNull(schema.userTable.lotteryNumber),
-    })
+    // для ручного добавления номеров оставшимся участникам
+    // const maxLotteryNumber = await this.db.query.userTable.findFirst({
+    //   columns: { lotteryNumber: true },
+    //   orderBy: desc(schema.userTable.lotteryNumber),
+    //   where: isNotNull(schema.userTable.lotteryNumber),
+    // })
 
-    if (
-      !maxLotteryNumber ||
-      !maxLotteryNumber.lotteryNumber ||
-      maxLotteryNumber.lotteryNumber < 100
-    ) {
-      await this.db
-        .update(schema.userTable)
-        .set({ lotteryNumber: 100 })
-        .where(eq(schema.userTable.id, userId))
-    } else {
-      await this.db
-        .update(schema.userTable)
-        .set({ lotteryNumber: maxLotteryNumber.lotteryNumber + 1 })
-        .where(eq(schema.userTable.id, userId))
-    }
+    // if (
+    //   !maxLotteryNumber ||
+    //   !maxLotteryNumber.lotteryNumber ||
+    //   maxLotteryNumber.lotteryNumber < 100
+    // ) {
+    //   await this.db
+    //     .update(schema.userTable)
+    //     .set({ lotteryNumber: 100 })
+    //     .where(eq(schema.userTable.id, userId))
+    // } else {
+    //   await this.db
+    //     .update(schema.userTable)
+    //     .set({ lotteryNumber: maxLotteryNumber.lotteryNumber + 1 })
+    //     .where(eq(schema.userTable.id, userId))
+    // }
   }
 }
