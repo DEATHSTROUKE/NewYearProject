@@ -11,7 +11,13 @@ export class ExcelService {
   async getExcelAllReviews() {
     const reviews = await this.db
       .select({
+        name: schema.userTable.name,
+        surname: schema.userTable.surname,
+        middleName: schema.userTable.middleName,
+        email: schema.userTable.email,
         phone: schema.userTable.phone,
+        place: schema.userTable.place,
+        division: schema.userTable.division,
         review: schema.userReviewsTable.text,
       })
       .from(schema.userReviewsTable)
@@ -22,7 +28,13 @@ export class ExcelService {
 
     const worbookJson = reviews.map(review => {
       return {
+        Фамилия: review.surname,
+        Имя: review.name,
+        Отчество: review.middleName,
         Телефон: `+7${review.phone}`,
+        Почта: review.email,
+        'Населенный пункт': review.place,
+        Дивизион: review.division,
         Отзыв: review.review,
       }
     })
@@ -45,10 +57,13 @@ export class ExcelService {
     const users = await this.db
       .select({
         id: schema.userTable.id,
-        phone: schema.userTable.phone,
-        surname: schema.userTable.surname,
         name: schema.userTable.name,
+        surname: schema.userTable.surname,
         middleName: schema.userTable.middleName,
+        email: schema.userTable.email,
+        phone: schema.userTable.phone,
+        place: schema.userTable.place,
+        division: schema.userTable.division,
         lotteryNumber: schema.userTable.lotteryNumber,
         correctAnswers: count(schema.attemptsTable.id),
       })
@@ -79,6 +94,9 @@ export class ExcelService {
             Имя: user.name,
             Отчество: user.middleName,
             Телефон: `+7${user.phone}`,
+            Почта: user.email,
+            'Населенный пункт': user.place,
+            Дивизион: user.division,
             'Номер в лоттерее': user.lotteryNumber,
           }
         })
