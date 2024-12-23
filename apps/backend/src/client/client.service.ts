@@ -80,13 +80,7 @@ export class ClientService {
     const doneFeedback = await this.isDoneFeedback(userId)
     if (
       !doneFeedback &&
-      ((dayjs().isBetween(
-        lastWordEndDate.subtract(24, 'hour'),
-        lastWordEndDate,
-      ) &&
-        doneCurWord) ||
-        (dayjs().isBetween(lastWordEndDate, feedbackEntity?.endDate) &&
-          doneCurWord))
+      dayjs().isBetween(lastWordEndDate, feedbackEntity?.endDate)
     ) {
       console.info('waitFeedback')
       return this.getWaitFeedbackState(userId)
